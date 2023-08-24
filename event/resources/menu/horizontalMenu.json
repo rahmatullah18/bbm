@@ -1,0 +1,29 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Home",
+      "icon": "menu-icon tf-icons bx bx-home-circle",
+      "slug": "pages-home"
+    },
+    {
+      "icon": "menu-icon tf-icons bx bx-data",
+      "name": "Master",
+      "slug": "event",
+      "submenu": [
+        {
+          "url": "/finance/coa",
+          "name": "COA",
+          "slug": "event-new"
+        }
+      ]
+    },
+
+    {
+      "url": "/finance/arus-kas",
+      "name": "Arus Kas",
+      "icon": "menu-icon tf-icons bx bx-money",
+      "slug": "finance-arus-kas"
+    }
+  ]
+}

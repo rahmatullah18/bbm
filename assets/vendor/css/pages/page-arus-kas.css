@@ -1,0 +1,37 @@
+.header__aruskas {
+  display: flex;
+  justify-content: end;
+}
+
+.container__filter__aruskas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.date__filter__aruskas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+
+.header_table_aruskas {
+  font-size: large;
+  font-weight: bold;
+  background-color: #f3f4f4;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.detail__aktivitas__operasional {
+  background: rgb(235, 235, 235);
+}
+
+.data__total__aktivitas__operasional {
+  cursor: pointer;
+  color: rgb(16, 138, 179);
+}

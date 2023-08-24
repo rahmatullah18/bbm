@@ -1,0 +1,66 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Testing",
+      "icon": "menu-icon tf-icons bx bx-home-circle",
+      "slug": "pages-home"
+    },
+    {
+      "icon": "menu-icon tf-icons bx bx-file",
+      "name": "Manajemen Event",
+      "slug": "event",
+      "submenu": [
+        {
+          "url": "/page-2",
+          "name": "Buat Event Baru",
+          "slug": "event-new"
+        },
+        {
+          "url": "/list_event",
+          "name": "Daftar Event",
+          "slug": "event-list"
+        }
+      ]
+    },
+    {
+      "icon": "menu-icon tf-icons bx bx-location-plus",
+      "name": "Master Lokasi Event",
+      "slug": "lokasi-event",
+      "submenu": [
+        {
+          "url": "/input-lokasi",
+          "name": "Buat Lokasi Baru",
+          "slug": "input-lokasi"
+        },
+        {
+          "url": "/list-lokasi",
+          "name": "Daftar Lokasi",
+          "slug": "list-lokasi"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Bosowa Connect",
+      "slug": "bosowa-connect-hdr"
+    },
+    {
+      "icon": "menu-icon tf-icons bx bx-slideshow",
+      "name": "Banner Promosi",
+      "slug": "banner-event",
+      "submenu": [
+        {
+          "url": "/list-banner",
+          "name": "Daftar banner",
+          "slug": "list-banner"
+        }
+      ]
+    },
+    {
+      "url": "/calendar-event",
+      "icon": "menu-icon tf-icons bx bx-calendar",
+      "name": "Kalender Event",
+      "slug": "calendar-event"
+    }
+  ]
+}
