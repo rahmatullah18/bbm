@@ -311,6 +311,29 @@ foreach($detail_rincian_event as $detail_rincian_event_){
 							</label>
 						</div>
 					</div>
+					<div class="col-md">
+						<div class="form-check mt-3">
+							<input name="tipe_kegiatan" class="form-check-input <?=$checkeds;?>" type="radio" value="11" id="tipe_event_atpm" />
+							<label class="form-check-label" for="tipe_event_atpm">
+							  Event ATPM
+							</label>
+						</div>
+					</div>
+					<div class="col-md">
+						<div class="form-check mt-3">
+							
+						</div>
+					</div>
+					<div class="col-md">
+						<div class="form-check mt-3">
+							
+						</div>
+					</div>
+					<div class="col-md">
+						<div class="form-check mt-3">
+							
+						</div>
+					</div>
 				</div>
 			</div>
 			
@@ -408,6 +431,15 @@ foreach($detail_rincian_event as $detail_rincian_event_){
 				<div class="row"></div>
 				<div class="row col-md-12 p-4" style="padding-bottom:0px !important;">
 					<label class="form-label fw-bold">Tipe Kendaraan Yang Di Display</label>
+					<div class="col-md">
+						
+						<div class="form-check mt-3">
+							<input name="tipe_xforce" class="form-check-input tipe_ken_mmksi <?=$checkeds;?>" type="checkbox" value="1" id="tipe_xforce" <?=($list_event['cxforce'] == '1') ? 'checked' : '';?> />
+							<label class="form-check-label" for="tipe_xforce">
+							  XForce
+							</label>
+						</div>
+					</div>
 					<div class="col-md">
 						
 						<div class="form-check mt-3">
@@ -634,7 +666,7 @@ foreach($detail_rincian_event as $detail_rincian_event_){
 						  <div class="col-md-6">
 							<div class="input-group">
 								<input class="form-control upload_file_docs <?=$checkeds;?>" type="file" id="upload_doc_1" name="area_display" rowz="1" />
-								<a href="<?=url('storage_event')."/".$list_event['cfoto_area_dispaly'];?>" <?=($list_event['cfoto_area_dispaly'] == '') ? 'style="display:none"' : '';?> target="blank"><button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Show</button></a>
+								<a href="<?=url('storage_event')."/".$list_event['cfoto_area_dispaly'];?>" <?=($list_event['cfoto_area_dispaly'] == '') ? 'style="display:none"' : '';?> target="_blank"><button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Show</button></a>
 							</div>
 							<p id="error1_1" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_1" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
 						  </div>
@@ -646,7 +678,7 @@ foreach($detail_rincian_event as $detail_rincian_event_){
 						  <div class="col-md-6">
 							<div class="input-group">
 								<input class="form-control upload_file_docs <?=$checkeds;?>" type="file" id="upload_doc_2" name="area_display2" rowz="2" />
-								<a href="<?=url('storage_event')."/".$list_event['cfoto_area_display2'];?>" <?=($list_event['cfoto_area_display2'] == '') ? 'style="display:none"' : '';?> target="blank"><button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Show</button></a>
+								<a href="<?=url('storage_event')."/".$list_event['cfoto_area_display2'];?>" <?=($list_event['cfoto_area_display2'] == '') ? 'style="display:none"' : '';?> target="_blank"><button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Show</button></a>
 							</div>
 							<p id="error1_2" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_2" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
 						  </div>
@@ -658,7 +690,7 @@ foreach($detail_rincian_event as $detail_rincian_event_){
 						  <div class="col-md-6">
 							<div class="input-group">
 								<input class="form-control upload_file_docs <?=$checkeds;?>" type="file" id="upload_doc_3" name="lokasi_pameran" rowz="3" />
-								<a href="<?=url('storage_event')."/".$list_event['cfoto_lokasi_pameran'];?>" <?=($list_event['cfoto_lokasi_pameran'] == '') ? 'style="display:none"' : '';?> target="blank"><button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Show</button></a>
+								<a href="<?=url('storage_event')."/".$list_event['cfoto_lokasi_pameran'];?>" <?=($list_event['cfoto_lokasi_pameran'] == '') ? 'style="display:none"' : '';?> target="_blank"><button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Show</button></a>
 							</div>
 							<p id="error1_3" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_3" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
 						  </div>
@@ -670,7 +702,7 @@ foreach($detail_rincian_event as $detail_rincian_event_){
 						  <div class="col-md-6">
 							<div class="input-group">
 								<input class="form-control upload_file_docs <?=$checkeds;?>" type="file" id="upload_doc_5" name="tampak_luar" rowz="5" />
-								<a href="<?=url('storage_event')."/".$list_event['cfoto_tampak_luar'];?>" <?=($list_event['cfoto_tampak_luar'] == '') ? 'style="display:none"' : '';?> target="blank"><button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Show</button></a>
+								<a href="<?=url('storage_event')."/".$list_event['cfoto_tampak_luar'];?>" <?=($list_event['cfoto_tampak_luar'] == '') ? 'style="display:none"' : '';?> target="_blank"><button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Show</button></a>
 							</div>
 							<p id="error1_5" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_5" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
 						  </div>
@@ -682,7 +714,7 @@ foreach($detail_rincian_event as $detail_rincian_event_){
 						  <div class="col-md-6">
 							<div class="input-group">
 								<input class="form-control upload_file_docs <?=$checkeds;?>" type="file" id="upload_doc_6" name="lokasi_gmaps" rowz="6" />
-								<a href="<?=url('storage_event')."/".$list_event['cfoto_lokasi_gmaps'];?>" <?=($list_event['cfoto_lokasi_gmaps'] == '') ? 'style="display:none"' : '';?> target="blank"><button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Show</button></a>
+								<a href="<?=url('storage_event')."/".$list_event['cfoto_lokasi_gmaps'];?>" <?=($list_event['cfoto_lokasi_gmaps'] == '') ? 'style="display:none"' : '';?> target="_blank"><button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Show</button></a>
 							</div>
 							<p id="error1_6" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_6" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
 						  </div>
@@ -694,7 +726,7 @@ foreach($detail_rincian_event as $detail_rincian_event_){
 						  <div class="col-md-6">
 							<div class="input-group">
 								<input class="form-control upload_file_docs <?=$checkeds;?>" type="file" id="upload_doc_4" name="surat_penawaran" rowz="4" />
-								<a href="<?=url('storage_event')."/".$list_event['csurat_penawaran'];?>" <?=($list_event['csurat_penawaran'] == '') ? 'style="display:none"' : '';?> target="blank"><button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Show</button></a>
+								<a href="<?=url('storage_event')."/".$list_event['csurat_penawaran'];?>" <?=($list_event['csurat_penawaran'] == '') ? 'style="display:none"' : '';?> target="_blank"><button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Show</button></a>
 							</div>
 							<p id="error1_4" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_4" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
 						  </div>

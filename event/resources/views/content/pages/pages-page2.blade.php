@@ -172,13 +172,36 @@ $configData = Helper::appClasses();
 					
 				</div>
 				
-				<div class="row col-md-12 p-4" style="padding-top:0px !important;">
+				<div class="row col-md-12 p-4" style="padding-top:0px !important;padding-left:1.5rem !important;padding-right:1.5rem !important;">
 					<div class="col-md">
 						<div class="form-check mt-3">
 							<input name="tipe_kegiatan" class="form-check-input" type="radio" value="10" id="tipe_above_line" />
 							<label class="form-check-label" for="tipe_above_line">
 							  Above The Line
 							</label>
+						</div>
+					</div>
+					<div class="col-md">
+						<div class="form-check mt-3">
+							<input name="tipe_kegiatan" class="form-check-input" type="radio" value="11" id="tipe_event_atpm" />
+							<label class="form-check-label" for="tipe_event_atpm">
+							  Event ATPM
+							</label>
+						</div>
+					</div>
+					<div class="col-md">
+						<div class="form-check mt-3">
+							
+						</div>
+					</div>
+					<div class="col-md">
+						<div class="form-check mt-3">
+							
+						</div>
+					</div>
+					<div class="col-md">
+						<div class="form-check mt-3">
+							
 						</div>
 					</div>
 				</div>
@@ -265,6 +288,15 @@ $configData = Helper::appClasses();
 				<div class="row"></div>
 				<div class="row col-md-12 p-4" style="padding-bottom:0px !important;">
 					<label class="form-label fw-bold">Tipe Kendaraan Yang Di Display</label>
+					<div class="col-md">
+						
+						<div class="form-check mt-3">
+							<input name="tipe_xforce" class="form-check-input tipe_ken_mmksi" type="checkbox" value="1" id="tipe_xforce" />
+							<label class="form-check-label" for="tipe_xforce">
+							  XForce
+							</label>
+						</div>
+					</div>
 					<div class="col-md">
 						
 						<div class="form-check mt-3">

@@ -175,7 +175,7 @@ class Helpers
         $menu_arr = array();
 		
 		if(isset($user_name)){
-			$menu_res = Http::post('http://bbm-bams.co.id/sparepart_api/v1/get_menu_access',[
+			$menu_res = Http::post('https://bbm-bams.co.id/sparepart_api/v1/get_menu_access',[
 					'json' => ['user_name' => $user_name],
 					'headers' => [
 						'Content-Type' => 'application/json',

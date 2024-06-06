@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pages\Page2;
+use App\Http\Controllers\pricelist\PricelistController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +37,8 @@ Route::post('/proses_upload_report', $controller_path . '\pages\Page2@proses_upl
 Route::get('/get_list_option_lokasi', $controller_path . '\pages\Page2@get_list_lokasi')->name('list-option-lokasi');
 Route::get('/get_grafik_ach_event', $controller_path . '\pages\Page2@get_grafik_ach')->name('grafik-achivement');
 Route::get('/print_approval_event', $controller_path . '\pages\Page2@print_approval')->name('print-approval-event')->middleware('ensure.user');
+Route::get('/export_data_event', $controller_path . '\pages\Page2@export_event_xls')->name('export-event-xls');
+Route::post('/proses_cancel_report', $controller_path . '\pages\Page2@proses_cancel_report')->name('proses-cancel-event');
 
 Route::prefix('events')->group(function () {
   Route::get('/test_event', [Page2::class, 'event_test'])->name('test-event')->middleware('ensure.user');
@@ -83,6 +87,7 @@ Route::get('/auth/register-basic', $controller_path . '\authentications\Register
 Route::post('/auth/logout', $controller_path . '\authentications\LoginBasic@logout_proses')->name('auth-logout-proses');
 Route::get('/auth/notif', $controller_path . '\authentications\Notifs@index')->name('auth-notif');
 Route::get('/auth/log_to_in', $controller_path . '\authentications\LoginBasic@log_to_in_proses')->name('auth-logtoin')->middleware('corsx');
+Route::get('/auth/test_login', $controller_path . '\authentications\LoginBasic@test_login_proses')->name('auth-test-login');
 
 // route to ex image2
 Route::get('storage_event/{filename}', function ($filename) {
@@ -118,3 +123,8 @@ Route::middleware('ensure.user')->prefix('/finance')->group(function () {
 
   Route::get('/arus-kas-export', 'App\Http\Controllers\finance\ArusKasController@aruskasExport')->name('finance-arus-kas-export');
 });
+
+// route
+Route::get('/pricelists', 'App\Http\Controllers\pricelist\PricelistController@index')->name('pricelists');
+Route::post('/import-template', [PricelistController::class, 'templateImport'])->name('template-import-pricelist');
+Route::post('/export-pricelist', [PricelistController::class, 'exportPricelist'])->name('template-import-pricelist');

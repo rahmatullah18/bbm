@@ -49,6 +49,31 @@ $configData = Helper::appClasses();
 			<div class="card">
 			  <h5 class="card-header">List Data Event</h5>
 			  <div class="card-datatable text-nowrap">
+				<div class="row col-md-8" style="float:right;">
+					<form id="export_form_event" class="row" action="{{url('/export_data_event')}}" method="GET" autocomplete="off" style="margin-top:-6px;;padding-right: 0px;padding-left: 0px;">
+					{{ csrf_field() }}
+					<div class="col-md-7">
+						<label class="form-label fw-bold">Tanggal Kegiatan</label>
+						<div class="input-group" id="">
+						  <input class="form-control" type="date" value="" id="tgl_mulai" name="tgl_mulai"/>
+						  <span class="input-group-text">to</span>
+						  <input class="form-control" type="date" value="" id="tgl_selesai" name="tgl_selesai"/>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<label class="form-label fw-bold">No. Event</label>
+						<div class="input-group" id="">
+						  <input type="text" class="form-control" id="cari_event" name="cari_event" placeholder="No Event" />
+						  <button type="button" class="btn btn-icon btn-primary" id="btn_search" name="btn_search">
+							<span class="tf-icons bx bx-search-alt"></span>
+						  </button>
+						  <button type="submit" class="btn btn-icon btn-success" id="btn_export_xcl" name="btn_export_xcl">
+							<span class="tf-icons bx bx-export"></span>
+						  </button>
+						</div>
+					</div>
+					</form>
+				</div>
 				<table class="datatables-ajax table table-bordered">
 				  <thead>
 					<tr>
@@ -80,26 +105,135 @@ $configData = Helper::appClasses();
       <div class="modal-body">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="text-center mb-4">
-          <h3 class="mb-4" id="header_report">Upload Dokumen Laporan 1</h3>
+          <h3 class="mb-4" id="header_report">Upload Dokumen Laporan</h3>
         </div>
         <h6 id="no_event_p">No. Event :</h6>
-        <!--<p>Enter your mobile phone number with country code and we will send you a verification code.</p>-->
         <form id="upload_report" class="row g-3 mt-3" action="" enctype="multipart/form-data" method="POST" autocomplete="off">
           <div class="col-12">
-            <label class="form-label" for="upload_doc_report">Upload File Laporan</label>
+            <label class="form-label" for="upload_doc_1">Upload File Laporan 1</label>
             <div class="input-group">
-			  <input class="form-control upload_file_docs" type="file" id="upload_doc_report" name="upload_doc_report" />
+			  <input class="form-control upload_file_docs" type="file" id="upload_doc_1" name="upload_doc_1" rowz="1" />
 			  
-			  <a href="" id="report_show_" target="blank"><button class="btn btn-outline-primary" type="button" id="report_show">Show</button></a>
-			  <input class="form-control" type="hidden" id="no_report" name="no_report" />
+			  <a href="" id="report_show_1" target="_blank"><button class="btn btn-outline-primary" type="button">Show</button></a>
 			  <input class="form-control" type="hidden" id="no_event" name="no_event" /> 
             </div>
-			<p id="error1_r" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_r" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
-			<div class="alert displaynone" id="responseMsg"></div>
+			<p id="error1_1" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_1" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
+		  </div>
+		  <div class="col-12">
+            <label class="form-label" for="upload_doc_2">Upload File Laporan 2</label>
+            <div class="input-group">
+			  <input class="form-control upload_file_docs" type="file" id="upload_doc_2" name="upload_doc_2" rowz="2" />
+			  
+			  <a href="" id="report_show_2" target="_blank"><button class="btn btn-outline-primary" type="button">Show</button></a>
+            </div>
+			<p id="error1_2" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_2" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
+		  </div>
+		  <div class="col-12">
+            <label class="form-label" for="upload_doc_3">Upload File Laporan 3</label>
+            <div class="input-group">
+			  <input class="form-control upload_file_docs" type="file" id="upload_doc_3" name="upload_doc_3" rowz="3" />
+			  
+			  <a href="" id="report_show_3" target="_blank"><button class="btn btn-outline-primary" type="button">Show</button></a>
+            </div>
+			<p id="error1_3" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_3" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
+		  </div>
+		  <div class="col-12">
+            <label class="form-label" for="upload_doc_4">Upload File Laporan 4</label>
+            <div class="input-group">
+			  <input class="form-control upload_file_docs" type="file" id="upload_doc_4" name="upload_doc_4" rowz="4" />
+			  
+			  <a href="" id="report_show_4" target="_blank"><button class="btn btn-outline-primary" type="button">Show</button></a>
+            </div>
+			<p id="error1_4" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_4" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
+		  </div>
+		  <div class="col-12">
+            <label class="form-label" for="upload_doc_5">Upload File Laporan 5</label>
+            <div class="input-group">
+			  <input class="form-control upload_file_docs" type="file" id="upload_doc_5" name="upload_doc_5" rowz="5" />
+			  
+			  <a href="" id="report_show_5" target="_blank"><button class="btn btn-outline-primary" type="button">Show</button></a>
+            </div>
+			<p id="error1_5" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_5" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
+		  </div>
+		  <div class="col-12">
+            <label class="form-label" for="upload_doc_6">Upload File Laporan 6</label>
+            <div class="input-group">
+			  <input class="form-control upload_file_docs" type="file" id="upload_doc_6" name="upload_doc_6" rowz="6" />
+			  
+			  <a href="" id="report_show_6" target="_blank"><button class="btn btn-outline-primary" type="button">Show</button></a>
+            </div>
+			<p id="error1_6" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_6" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
+		  </div>
+		  <div class="col-12">
+            <label class="form-label" for="upload_doc_7">Upload File Laporan 7</label>
+            <div class="input-group">
+			  <input class="form-control upload_file_docs" type="file" id="upload_doc_7" name="upload_doc_7" rowz="7" />
+			  
+			  <a href="" id="report_show_7" target="_blank"><button class="btn btn-outline-primary" type="button">Show</button></a>
+            </div>
+			<p id="error1_7" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_7" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
+		  </div>
+		  <div class="col-12">
+            <label class="form-label" for="upload_doc_8">Upload File Laporan 8</label>
+            <div class="input-group">
+			  <input class="form-control upload_file_docs" type="file" id="upload_doc_8" name="upload_doc_8" rowz="8" />
+			  
+			  <a href="" id="report_show_8" target="_blank"><button class="btn btn-outline-primary" type="button">Show</button></a>
+            </div>
+			<p id="error1_8" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_8" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
+		  </div>
+		  <div class="col-12">
+            <label class="form-label" for="upload_doc_9">Upload File Laporan 9</label>
+            <div class="input-group">
+			  <input class="form-control upload_file_docs" type="file" id="upload_doc_9" name="upload_doc_9" rowz="9" />
+			  
+			  <a href="" id="report_show_9" target="_blank"><button class="btn btn-outline-primary" type="button">Show</button></a>
+            </div>
+			<p id="error1_9" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_9" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
+		  </div>
+		  <div class="col-12">
+            <label class="form-label" for="upload_doc_10">Upload File Laporan 10</label>
+            <div class="input-group">
+			  <input class="form-control upload_file_docs" type="file" id="upload_doc_10" name="upload_doc_10" rowz="10" />
+			  
+			  <a href="" id="report_show_10" target="_blank"><button class="btn btn-outline-primary" type="button">Show</button></a>
+            </div>
+			<p id="error1_10" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_10" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
+		  </div>
+		  <div class="col-12">
+            <label class="form-label" for="upload_doc_11">Upload File Laporan 11</label>
+            <div class="input-group">
+			  <input class="form-control upload_file_docs" type="file" id="upload_doc_11" name="upload_doc_11" rowz="11" />
+			  
+			  <a href="" id="report_show_11" target="_blank"><button class="btn btn-outline-primary" type="button">Show</button></a>
+            </div>
+			<p id="error1_11" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_11" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
+		  </div>
+		  <div class="col-12">
+            <label class="form-label" for="upload_doc_12">Upload File Laporan 12</label>
+            <div class="input-group">
+			  <input class="form-control upload_file_docs" type="file" id="upload_doc_12" name="upload_doc_12" rowz="12" />
+			  
+			  <a href="" id="report_show_12" target="_blank"><button class="btn btn-outline-primary" type="button">Show</button></a>
+            </div>
+			<p id="error1_12" style="display:none; color:#FF0000; font-size: 10px;">Invalid File Format! File Format Must Be JPG, JPEG, PNG, & PDF.</p><p id="error2_12" style="display:none; color:#FF0000; font-size: 10px;">Maximum File Size Limit is 1MB.</p>
+		  </div>
+		  <div class="col-sm-6">
+            <label class="switch switch-square">
+              <input type="checkbox" class="switch-input" value="1" id="sta_verifikasi" name="sta_verifikasi" />
+              <span class="switch-toggle-slider">
+                <span class="switch-on" style="top:20%"><i class="bx bx-check"></i></span>
+                <span class="switch-off" style="top:20%"><i class="bx bx-x"></i></span>
+              </span>
+              <span class="switch-label">Verifikasi Laporan</span>
+            </label>
+		  </div>
+		  <div class="col-12">
+            <div class="alert displaynone" id="responseMsg"></div>
 			<div class='alert alert-danger mt-2 d-none text-danger' id="err_file"></div>
 		  </div>
           <div class="col-12">
-            <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
+            <button type="submit" id="submit_report" class="btn btn-primary me-sm-3 me-1">Submit</button>
             <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
           </div>
         </form>
@@ -218,6 +352,37 @@ $configData = Helper::appClasses();
 </div>
 <!--/ Modal Chart -->
 
+<!-- Modal Cancel -->
+<div class="modal fade" id="modalCancel" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-simple modal-enable-otp modal-dialog-centered">
+    <div class="modal-content p-3 p-md-5">
+      <div class="modal-body">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="text-center mb-4">
+          <h3 class="mb-4">Cancel Event</h3>
+        </div>
+        <h6 id="no_event_c">No. Event :</h6>
+        <form id="cancel_event_f" class="row g-3 mt-3" action="" enctype="multipart/form-data" method="POST" autocomplete="off">
+          <div class="col-12">
+            <label class="form-label" for="keterangan_cancel">Keterangan Cancel</label>
+            <!--<div class="input-group">-->
+			  <textarea class="form-control" id="keterangan_cancel" name="keterangan_cancel" rows="2"></textarea>
+			  <input class="form-control" type="hidden" id="no_event_clc" name="no_event_clc" /> 
+            <!--</div>-->
+			<div class="alert displaynone" id="responseMsg_clc"></div>
+			<div class='alert alert-danger mt-2 d-none text-danger' id="err_clc"></div>
+		  </div>
+          <div class="col-12">
+            <button type="submit" id="sub_cacl" class="btn btn-primary me-sm-3 me-1">Submit</button>
+            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ Modal Cancel -->
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script>
@@ -227,35 +392,178 @@ $(document).ready(function() {
 	$('#modalReport1').modal({ show: false});
 	$('#responseMsg').hide();
 	$('#err_file').hide();
-	$('#report_show_').hide();
+	$('#report_show_1').hide();
+	$('#report_show_2').hide();
+	$('#report_show_3').hide();
+	$('#report_show_4').hide();
+	$('#report_show_5').hide();
+	$('#report_show_6').hide();
+	$('#report_show_7').hide();
+	$('#report_show_8').hide();
+	$('#report_show_9').hide();
+	$('#report_show_10').hide();
+	$('#report_show_11').hide();
+	$('#report_show_12').hide();
 	$('#modalChart').modal({ show: false});
+	$('#modalCancel').modal({ show: false});
 	
+	$('#tgl_mulai').change(function() {
+		
+		var date_m = $(this).val();
+		
+		if(date_m != ''){
+			//console.log(date_m);
+			//$('#tgl_selesai').min = "2022-10-31";
+			var x = document.getElementById("tgl_selesai").min = date_m;
+			$('#tgl_selesai').val('');
+		}
+
+	});
+
 });
 </script>
 
 <script>
-	function model_report(no, nmr_event, file){
+	function model_report(nmr_event, file1, file2, file3, file4, file5, file6, file7, file8, file9, file10, file11, file12, sta_verifikasi, all_ver){
 		
 		
 		$('#no_event_p').text('No. Event : '+nmr_event);
-		//$('#header_report').text('Upload Dokumen Laporan '+no);
-		$('#header_report').text('Upload Dokumen Laporan');
 		
 		$('#modalReport1').modal('show');
 		
-		$('#no_report').val(no);
 		$('#no_event').val(nmr_event);
 		
 		$('#responseMsg').hide();
 		$('#err_file').hide();
-		$('#report_show_').hide();
+		$('#report_show_1').hide();
+		$('#report_show_2').hide();
+		$('#report_show_3').hide();
+		$('#report_show_4').hide();
+		$('#report_show_5').hide();
+		$('#report_show_6').hide();
+		$('#report_show_7').hide();
+		$('#report_show_8').hide();
+		$('#report_show_9').hide();
+		$('#report_show_10').hide();
+		$('#report_show_11').hide();
+		$('#report_show_12').hide();
 		
-		if(file != ""){
-			$('#report_show_').show();
-			$('#report_show_').attr('href',file);
+		if(file1 != ""){
+			$('#report_show_1').show();
+			$('#report_show_1').attr('href',file1);
 		}else{
-			$('#report_show_').hide();
-			$('#report_show_').attr('href','#');
+			$('#report_show_1').hide();
+			$('#report_show_1').attr('href','#');
+		}
+		
+		if(file2 != ""){
+			$('#report_show_2').show();
+			$('#report_show_2').attr('href',file2);
+		}else{
+			$('#report_show_2').hide();
+			$('#report_show_2').attr('href','#');
+		}
+		
+		if(file3 != ""){
+			$('#report_show_3').show();
+			$('#report_show_3').attr('href',file3);
+		}else{
+			$('#report_show_3').hide();
+			$('#report_show_3').attr('href','#');
+		}
+		
+		if(file4 != ""){
+			$('#report_show_4').show();
+			$('#report_show_4').attr('href',file4);
+		}else{
+			$('#report_show_4').hide();
+			$('#report_show_4').attr('href','#');
+		}
+		
+		if(file5 != ""){
+			$('#report_show_5').show();
+			$('#report_show_5').attr('href',file5);
+		}else{
+			$('#report_show_5').hide();
+			$('#report_show_5').attr('href','#');
+		}
+		
+		if(file6 != ""){
+			$('#report_show_6').show();
+			$('#report_show_6').attr('href',file6);
+		}else{
+			$('#report_show_6').hide();
+			$('#report_show_6').attr('href','#');
+		}
+		
+		if(file7 != ""){
+			$('#report_show_7').show();
+			$('#report_show_7').attr('href',file7);
+		}else{
+			$('#report_show_7').hide();
+			$('#report_show_7').attr('href','#');
+		}
+		
+		if(file8 != ""){
+			$('#report_show_8').show();
+			$('#report_show_8').attr('href',file8);
+		}else{
+			$('#report_show_8').hide();
+			$('#report_show_8').attr('href','#');
+		}
+		
+		if(file9 != ""){
+			$('#report_show_9').show();
+			$('#report_show_9').attr('href',file9);
+		}else{
+			$('#report_show_9').hide();
+			$('#report_show_9').attr('href','#');
+		}
+		
+		if(file10 != ""){
+			$('#report_show_10').show();
+			$('#report_show_10').attr('href',file10);
+		}else{
+			$('#report_show_10').hide();
+			$('#report_show_10').attr('href','#');
+		}
+		
+		if(file11 != ""){
+			$('#report_show_11').show();
+			$('#report_show_11').attr('href',file11);
+		}else{
+			$('#report_show_11').hide();
+			$('#report_show_11').attr('href','#');
+		}
+		
+		if(file12 != ""){
+			$('#report_show_12').show();
+			$('#report_show_12').attr('href',file12);
+		}else{
+			$('#report_show_12').hide();
+			$('#report_show_12').attr('href','#');
+		}
+		
+		if(sta_verifikasi == '1'){
+			$('#sta_verifikasi').prop('checked', true);
+			if ($('#submit_report').attr('disabled',false)){
+				$('#submit_report').attr('disabled',true);
+			}
+		}else{
+			$('#sta_verifikasi').prop('checked', false);
+			if ($('#submit_report').attr('disabled',true)){
+				$('#submit_report').attr('disabled',false);
+			}
+		}
+		
+		if(all_ver != '1' || sta_verifikasi == '1'){
+			if ($('#sta_verifikasi').attr('disabled',false)){
+				$('#sta_verifikasi').attr('disabled',true);
+			}
+		}else{
+			if ($('#sta_verifikasi').attr('disabled',true)){
+				$('#sta_verifikasi').attr('disabled',false);
+			}
 		}
     }
 </script>
@@ -265,13 +573,14 @@ $(document).ready(function() {
 	//binds to onchange event of your input field
 	$(document).on('change', '.upload_file_docs', function(){
 		var a=0;
-		var rowz = 'r';
-
-		if ($('button:submit').attr('disabled',false)){
-			$('button:submit').attr('disabled',true);
+		//var rowz = 'r';
+		var rowz = $(this).attr('rowz');
+		
+		if ($('#submit_report').attr('disabled',false)){
+			$('#submit_report').attr('disabled',true);
 		}
 		
-		var ext = $('#upload_doc_report').val().split('.').pop().toLowerCase();
+		var ext = $('#upload_doc_'+rowz).val().split('.').pop().toLowerCase();
 		if ($.inArray(ext, ['png','jpg','jpeg', 'pdf']) == -1){
 			$('#error1_'+rowz).slideDown("slow");
 			$('#error2_'+rowz).slideUp("slow");
@@ -287,7 +596,29 @@ $(document).ready(function() {
 			}
 			$('#error1_'+rowz).slideUp("slow");
 			if (a==1){
-				$('button:submit').attr('disabled',false);
+				
+				var report_file = document.getElementsByClassName("upload_file_docs");
+				var all = 0;
+				for(i=1; i<=report_file.length; i++){
+					//console.log('file '+i);
+					if($('#upload_doc_'+i)[0].files.length > 0){
+						//console.log('ada file');
+						var ext_all = $('#upload_doc_'+i).val().split('.').pop().toLowerCase();
+						if ($.inArray(ext, ['png','jpg','jpeg', 'pdf']) == -1){
+							all++;
+						}else{
+							var picsize = ($('#upload_doc_'+i)[0].files[0].size);
+							if (picsize > 1000000){
+								all++;
+							}
+						}
+					}
+				}
+				//console.log($('#sta_verifikasi').is(":checked"));
+				if(all == 0 && !$('#sta_verifikasi').is(":checked")){
+					$('#submit_report').attr('disabled',false);
+				}
+				
 			}
 		}
 	});
@@ -298,22 +629,50 @@ $(document).ready(function() {
 $(document).ready(function(){
   $("#upload_report").submit(function (event) {
 	var CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
-	var files = $('#upload_doc_report')[0].files;
-	var no_report = $('#no_report').val();
+	var files1 = $('#upload_doc_1')[0].files;
+	var files2 = $('#upload_doc_2')[0].files;
+	var files3 = $('#upload_doc_3')[0].files;
+	var files4 = $('#upload_doc_4')[0].files;
+	var files5 = $('#upload_doc_5')[0].files;
+	var files6 = $('#upload_doc_6')[0].files;
+	var files7 = $('#upload_doc_7')[0].files;
+	var files8 = $('#upload_doc_8')[0].files;
+	var files9 = $('#upload_doc_9')[0].files;
+	var files10 = $('#upload_doc_10')[0].files;
+	var files11 = $('#upload_doc_11')[0].files;
+	var files12 = $('#upload_doc_12')[0].files;
+	var sta_verifikasi = '';
 	var no_event = $('#no_event').val();
 	
-	if(files.length > 0){
+	if($('#sta_verifikasi').is(":checked")){
+		sta_verifikasi = '1';
+	}
+	
+	//console.log(sta_verifikasi);
+	
+	if(files1.length > 0 || files2.length > 0 || files3.length > 0 || files4.length > 0 || files5.length > 0 || files6.length > 0 || files7.length > 0 || files8.length > 0 || files9.length > 0 || files10.length > 0 || files11.length > 0 || files12.length > 0 || sta_verifikasi > 0){
 		
 		var formData = new FormData();
 		
-		formData.append('file_report',files[0]);
+		formData.append('file_report1',files1[0]);
+		formData.append('file_report2',files2[0]);
+		formData.append('file_report3',files3[0]);
+		formData.append('file_report4',files4[0]);
+		formData.append('file_report5',files5[0]);
+		formData.append('file_report6',files6[0]);
+		formData.append('file_report7',files7[0]);
+		formData.append('file_report8',files8[0]);
+		formData.append('file_report9',files9[0]);
+		formData.append('file_report10',files10[0]);
+		formData.append('file_report11',files11[0]);
+		formData.append('file_report12',files12[0]);
         formData.append('_token',CSRF_TOKEN);
-		formData.append('no_report',no_report);
+		formData.append('sta_verifikasi',sta_verifikasi);
 		formData.append('no_event',no_event);
 		
 		$.ajax({
 		  type: "POST",
-		  url: "/proses_upload_report",
+		  url: "/proses_upload_report",//"/proses_upload_report",
 		  data: formData,
 		  dataType: "json",
 		  contentType: false,
@@ -329,15 +688,83 @@ $(document).ready(function(){
 				$('#responseMsg').html(response.msg_rsp);
 				$('#responseMsg').show();
 				
-				$('#report_show_').attr('href',response.nama_file);
-				$('#report_show_').show();
+				if(response.nama_file1 != ''){
+					$('#report_show_1').attr('href',response.nama_file1);
+					$('#report_show_1').show();
+				}
+				
+				if(response.nama_file2 != ''){
+					$('#report_show_2').attr('href',response.nama_file2);
+					$('#report_show_2').show();
+				}
+				
+				if(response.nama_file3 != ''){
+					$('#report_show_3').attr('href',response.nama_file3);
+					$('#report_show_3').show();
+				}
+				
+				if(response.nama_file4 != ''){
+					$('#report_show_4').attr('href',response.nama_file4);
+					$('#report_show_4').show();
+				}
+				
+				if(response.nama_file5 != ''){
+					$('#report_show_5').attr('href',response.nama_file5);
+					$('#report_show_5').show();
+				}
+				
+				if(response.nama_file6 != ''){
+					$('#report_show_6').attr('href',response.nama_file6);
+					$('#report_show_6').show();
+				}
+				
+				if(response.nama_file7 != ''){
+					$('#report_show_7').attr('href',response.nama_file7);
+					$('#report_show_7').show();
+				}
+				
+				if(response.nama_file8 != ''){
+					$('#report_show_8').attr('href',response.nama_file8);
+					$('#report_show_8').show();
+				}
+				
+				if(response.nama_file9 != ''){
+					$('#report_show_9').attr('href',response.nama_file9);
+					$('#report_show_9').show();
+				}
+				
+				if(response.nama_file10 != ''){
+					$('#report_show_10').attr('href',response.nama_file10);
+					$('#report_show_10').show();
+				}
+				
+				if(response.nama_file11 != ''){
+					$('#report_show_11').attr('href',response.nama_file11);
+					$('#report_show_11').show();
+				}
+				
+				if(response.nama_file12 != ''){
+					$('#report_show_12').attr('href',response.nama_file12);
+					$('#report_show_12').show();
+				}
+				
+				if(response.sta_verifikasi == '1'){
+					if ($('#submit_report').attr('disabled',false)){
+						$('#submit_report').attr('disabled',true);
+					}
+					if ($('#sta_verifikasi').attr('disabled',false)){
+						$('#sta_verifikasi').attr('disabled',true);
+					}
+				}
+				$('.datatables-ajax').DataTable().ajax.reload();
 				
 			}else if(response.status == 2){ 
 				$('#responseMsg').removeClass("alert-success");
 				$('#responseMsg').addClass("alert-danger");
-				$('#responseMsg').html(response.message);
+				$('#responseMsg').html(response.msg_rsp);
 				$('#responseMsg').show();
 			}
+
 		  },
 		  error: function(response){
               console.log("error : " + JSON.stringify(response) );
@@ -347,7 +774,7 @@ $(document).ready(function(){
 		});
 	
 	}else{
-         alert("Please select a file.");
+         alert("Input salah satu file report / Verifikasi laporan");
     }
 
     event.preventDefault();
@@ -538,6 +965,83 @@ function renderChart(data_tar, data_ach, labels) {
 		
 	}
 }
+</script>
+
+<script>
+	function model_cancel_event(nmr_event){
+		
+		$('#no_event_c').text('No. Event : '+nmr_event);
+		
+		$('#modalCancel').modal('show');
+
+		$('#no_event_clc').val(nmr_event);
+		
+		$('#responseMsg_clc').hide();
+		$('#err_clc').hide();
+		
+		$('#sub_cacl').attr('disabled',false);
+    }
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#cancel_event_f").submit(function (event) {
+	var CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
+	var no_event_clc = $('#no_event_clc').val();
+	var keterangan_cancel = $('#keterangan_cancel').val();
+	
+	//console.log(keterangan_cancel);
+	
+	if(keterangan_cancel != ""){
+		
+		var formData = new FormData();
+		
+        formData.append('_token',CSRF_TOKEN);
+		formData.append('keterangan_cancel',keterangan_cancel);
+		formData.append('no_event_clc',no_event_clc);
+		
+		$.ajax({
+		  type: "POST",
+		  url: "/proses_cancel_report",//"/proses_cancel_report",
+		  data: formData,
+		  dataType: "json",
+		  contentType: false,
+          processData: false,
+		  success: function(response){
+			  
+			//console.log(response);
+			  
+			if(response.status == 1){ // Uploaded successfully
+				
+				$('#responseMsg_clc').removeClass("alert-danger");
+				$('#responseMsg_clc').addClass("alert-success");
+				$('#responseMsg_clc').html(response.msg_rsp);
+				$('#responseMsg_clc').show();
+				
+				$('#sub_cacl').attr('disabled',true);
+				$('.datatables-ajax').DataTable().ajax.reload();
+				
+			}else if(response.status == 2){ 
+				$('#responseMsg_clc').removeClass("alert-success");
+				$('#responseMsg_clc').addClass("alert-danger");
+				$('#responseMsg_clc').html(response.msg_rsp);
+				$('#responseMsg_clc').show();
+			}
+		  },
+		  error: function(response){
+              console.log("error : " + JSON.stringify(response) );
+			  $('#err_clc').text(response.error);
+			  $('#err_clc').show();
+          }
+		});
+	
+	}else{
+         alert("Harap mengisi Alasan Cancel");
+    }
+
+    event.preventDefault();
+  });
+});
 </script>
 
 @endsection

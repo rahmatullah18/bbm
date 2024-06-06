@@ -5,16 +5,28 @@
 'use strict';
 
 $(function () {
-  var dt_ajax_table = $('.datatables-ajax');
+  var dt_ajax_table = $('.datatables-ajax'),
+	  startDateListEvent = $('#tgl_mulai'),
+	  endDateListEvent = $('#tgl_selesai'),
+	  searchListEvent = $('#cari_event'),
+	  dt_ajax;
 
   // Ajax Sourced Server-side
   // --------------------------------------------------------------------
 
   if (dt_ajax_table.length) {
-    var dt_ajax = dt_ajax_table.dataTable({
+    var dt_ajax = dt_ajax_table.DataTable({
       processing: true,
       //ajax: assetsPath + 'json/ajax.php',
-	  ajax: '/get_data_list_event',
+	  //ajax: '/get_data_list_event',
+	  ajax:  {
+		url: "/get_data_list_event",
+		data: function(d){
+			d.date_start = startDateListEvent.val();
+			d.date_finish = endDateListEvent.val();
+			d.search = searchListEvent.val();
+		}
+	  },
 	  columns: [
         { data: 'cnmr_event' },
 		{ data: 'status' },
@@ -28,8 +40,15 @@ $(function () {
 		{ data: 'lokasi' },
 		{ data: 'aksi' }
       ],
-      dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>><"table-responsive"t><"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>'
+      dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>><"table-responsive"t><"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+	  searching: false
     });
+	
+	$('#btn_search').on('click', function () {
+		
+		dt_ajax.ajax.reload();
+	});
+		
   }
 
   // on key up from input field

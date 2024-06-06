@@ -1,0 +1,169 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}
+
+[x-cloak] {
+  display: none !important;
+}
+
+.loader {
+  width: 60px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.ball {
+  list-style: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #1e293b;
+}
+
+.ball:nth-child(1) {
+  animation: bounce-1 2.1s ease-in-out infinite;
+}
+
+@keyframes bounce-1 {
+  50% {
+    transform: translateY(-18px);
+    background-color: gray;
+  }
+}
+
+.ball:nth-child(2) {
+  animation: bounce-3 2.1s ease-in-out 0.3s infinite;
+}
+
+@keyframes bounce-2 {
+  50% {
+    transform: translateY(-18px);
+    background-color: gray;
+  }
+}
+
+.ball:nth-child(3) {
+  animation: bounce-3 2.1s ease-in-out 0.6s infinite;
+}
+
+@keyframes bounce-3 {
+  50% {
+    transform: translateY(-18px);
+    background-color: gray;
+  }
+}
+
+/* icon */
+.icon-size-custom {
+  padding: 0px;
+}
+
+/* table do */
+.thkecil {
+  width: 20px;
+  /* border: 1px solid #dee2e6; */
+}
+
+/* css form filter */
+.section-filter {
+  width: 100%;
+  position: relative;
+}
+
+.label-filter {
+  position: absolute;
+  top: -16px;
+  left: 0;
+  font-size: 10px;
+}
+
+/* table */
+.svgIcon {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+.modal-edit-pricelist td {
+  font-size: 10px;
+}
+
+th {
+  padding: 3px 10px !important;
+  margin: 0 !important;
+}
+
+td {
+  /* font-size: 10px; */
+  padding: 3px 10px !important;
+  margin: 0 !important;
+}
+
+tr {
+  /* transisi */
+  transition: all 0.3s ease;
+  font-size: 13px;
+}
+
+tr:hover {
+  background-color: #ffffff;
+}
+
+.detail_td {
+  cursor: pointer;
+}
+
+.detail_td:hover {
+  color: #1e293b;
+  text-decoration: underline;
+}
+
+.view {
+  margin: auto;
+  width: 100%;
+}
+
+.wrapper {
+  position: relative;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.sticky-col {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+.first-col {
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  left: -1px;
+}
+
+.second-col {
+  width: 80px;
+  min-width: 80px;
+  max-width: 80px;
+  left: 48px;
+}
+
+/* modal import */
+.inputFile {
+  max-width: 190px;
+  display: none;
+}
+
+.labelFile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 190px;
+  border: 2px dashed #ccc;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+  color: #404040;
+  cursor: pointer;
+}

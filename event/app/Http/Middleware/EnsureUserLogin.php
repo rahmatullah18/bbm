@@ -60,7 +60,7 @@ class EnsureUserLogin
 										
 										foreach($menus->submenu as $submenus){
 											
-											if($submenus->slug == $currentRouteName){
+											if($submenus->slug == $currentRouteName && $submenus->slug != "event-new"){
 												$has_access = true;
 												return $next($request);
 											}

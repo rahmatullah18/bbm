@@ -54,11 +54,11 @@
           "name": "Daftar banner",
           "slug": "list-banner"
         },
-		{
+        {
           "url": "/input-banner",
           "name": "Input banner",
           "slug": "input-banner",
-		  "type": "hide"
+          "type": "hide"
         }
       ]
     },
@@ -66,6 +66,12 @@
       "url": "/calendar-event",
       "icon": "menu-icon tf-icons bx bx-calendar",
       "name": "Kalender Event",
+      "slug": "calendar-event"
+    },
+    {
+      "url": "/pricelists",
+      "icon": "menu-icon tf-icons bx bx-purchase-tag-alt",
+      "name": "Pricelist",
       "slug": "calendar-event"
     }
   ]
