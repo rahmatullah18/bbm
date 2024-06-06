@@ -100,8 +100,8 @@ $today = date('Y-m-d');
     return function(a,b){
       if(keys.includes(key)){
         let comparison = 0
-        const fieldA = a[key].toUpperCase()
-        const fieldB = b[key].toUpperCase()
+        const fieldA = a[key]?.toUpperCase()
+        const fieldB = b[key]?.toUpperCase()
         if (rule === 'asc') {
             if (fieldA > fieldB) {
               comparison = 1;
