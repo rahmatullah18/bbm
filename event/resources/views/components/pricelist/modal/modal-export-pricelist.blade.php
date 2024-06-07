@@ -14,7 +14,7 @@
             <div class="">
               <label class="" for="tahun">Tahun : </label>
               <select name="tahun" class="form-select form-select-sm">
-                <option value="">Semua</option>
+                {{-- <option value="">Semua</option> --}}
                 <template x-for="(tahun, idx) in dataTahun">
                   <option x-bind:value="tahun" x-text="tahun" :key="idx"></option>
                 </template>

@@ -26,19 +26,19 @@ class TemplatePricelist implements FromCollection, WithHeadings
         "by_tambahan" => 0,
         "bbn" => 53900000
       ],
-      [
-        "kode_tipe" => "TF02",
-        "cabang" => 'MKS',
-        "tahun" => "2024",
-        "tebus" => 513750000,
-        "deposit" => 0,
-        "expedisi" => 5155600,
-        "karoseri" => 0,
-        "pemeliharaan_pdi" => 219000,
-        "insentif" => 2400000,
-        "by_tambahan" => 0,
-        "bbn" => 63900000
-      ]
+      // [
+      //   "kode_tipe" => "TF02",
+      //   "cabang" => 'MKS',
+      //   "tahun" => "2024",
+      //   "tebus" => 513750000,
+      //   "deposit" => 0,
+      //   "expedisi" => 5155600,
+      //   "karoseri" => 0,
+      //   "pemeliharaan_pdi" => 219000,
+      //   "insentif" => 2400000,
+      //   "by_tambahan" => 0,
+      //   "bbn" => 63900000
+      // ]
     ]);
   }
 

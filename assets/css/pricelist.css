@@ -132,6 +132,7 @@ tr:hover {
 .sticky-col {
   position: -webkit-sticky;
   position: sticky;
+  z-index: 50;
 }
 
 .first-col {

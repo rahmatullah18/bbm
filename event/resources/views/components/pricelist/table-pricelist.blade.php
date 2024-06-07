@@ -4,6 +4,7 @@
   isLoadingDetailPricelist: false,
   loadingSubmit: false,
 
+
   // state for edit pricelist
   selectedPricelists: [],
   kode:'',
@@ -42,6 +43,21 @@
     }else{
       items[index] = {
         ...items[index],
+        active:false
+      }
+    }
+  },
+
+  selectedActiveSearchThead(key, index, ){
+    let active = dataThead.find(item => item.key == key) ? true : false
+    if(active){
+      this.dataThead[index] = {
+        ...this.dataThead,
+        active:true
+      }
+    }else{
+      this.dataThead[index] = {
+        ...this.dataThead,
         active:false
       }
     }

@@ -5,16 +5,18 @@ $cloc = session()->get('cloc');
   isActiveTable : false,
   isLoadingSubmit: false,
   dataImport: [],
+  nameFile:'',
   date:today,
 
   handleInputChange(){
     excelFile = $refs.excelInput.files[0]
-    console.log({excelFile})
+    this.nameFile = excelFile.name
   },
 
   clearExcel(){
     excelFile = null;
     $refs.excelInput.value = '';
+    this.nameFile = ''
   },
 
   uploadFile(){
@@ -133,7 +135,7 @@ $cloc = session()->get('cloc');
               <div x-show="excelFile.lastModified">
                 <div>
                   <x-icon.centang />
-                  <p>File berhasil di upload</p>
+                  <p x-text="nameFile"></p>
                 </div>
               </div>
             </label>

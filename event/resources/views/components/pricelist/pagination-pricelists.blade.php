@@ -22,8 +22,14 @@
     <small class="text-gray-700">First</small>
   </div>
 
-  <div class="d-flex gap-4">
-    <small>Total <span class="fw-bold" x-text="totalDataPricelist"></span> Data</small>
+  <div class="d-flex gap-4 align-items-center">
+    <span>
+      <small>Total <span class="fw-bold" x-text="totalDataPricelist"></span> Data</small>
+    </span>
+    <span>
+      <small>Page</small>
+      <small class="fw-bold" x-text="pagePricelist"></small>
+    </span>
   </div>
 
   <div class=" d-flex justify-content-end gap-2">
@@ -41,8 +47,8 @@
 
     {{-- next --}}
     <template x-if="pageLastPricelist > 1">
-      <div class="btn btn-sm border px-2 cursor-pointer bg-white">
-        <small class="text-secondary" @click="pageNext()">Next</small>
+      <div class="btn btn-sm border px-2 cursor-pointer bg-white" @click="pageNext()">
+        <small class="text-secondary">Next</small>
       </div>
     </template>
     <template x-if="pageLastPricelist <= 1">

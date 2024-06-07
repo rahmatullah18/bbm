@@ -22,6 +22,20 @@ class ExportPricelist implements FromCollection, WithHeadings
     // dd('masuk');
     $token = getToken();
     $url = getBaseUrlApi('/master/pl-unit/list');
+
+    $payloadLimit = [
+      "kode" => '',
+      "merk" => '',
+      "tipe" => '',
+      "model" => '',
+      "cabang" => '',
+      "tahun" => $this->tahun ?? "",
+      "detail" => 0,
+      "limit" => 1,
+      "page" => 1,
+    ];
+    $limit = getLimitData($url, $payloadLimit);
+
     $payload = [
       "kode" => '',
       "merk" => '',
@@ -29,8 +43,8 @@ class ExportPricelist implements FromCollection, WithHeadings
       "model" => '',
       "cabang" => '',
       "tahun" => $this->tahun ?? "",
-      "detail" => 1,
-      "limit" => 100,
+      "detail" => 0,
+      "limit" => $limit,
       "page" => 1,
     ];
     // fetch data report do
@@ -39,17 +53,32 @@ class ExportPricelist implements FromCollection, WithHeadings
         'Accept' => 'application/json',
         'Authorization' => 'Bearer ' . $token,
       ])->post($url, $payload);
+
+      if ($response->failed()) {
+        // Handle failed request
+        toastr()->error("Request to API failed.");
+        return redirect()->route('pricelists');
+      }
+
       $data = $response->json();
-      // dd($data);
+
+      if (!isset($data['result']['data'])) {
+        // Handle unexpected response structure
+        toastr()->error("Unexpected response structure.");
+        return redirect()->route('pricelists');
+      }
+
+      $collect = collect($data['result']['data']);
+
+      // dd($collect); // Use this to debug the collected data
     } catch (\Throwable $th) {
       toastr()->error("Data gagal export");
       return redirect()->route('pricelists');
     }
-    $collect = collect($data['result']['data']);
     // dd($collect);
     $exportData = $collect->map(function ($item) {
       return [
-        'kode' => $item['cKode'],
+        'kode' => $item['cKode'] ?? '',
         'nama' => $item['cnama'],
         'merk' => $item['cmerk'],
         'tipe' => $item['ctipe'],
@@ -57,17 +86,17 @@ class ExportPricelist implements FromCollection, WithHeadings
         'hpp_off' => $item['nhpp_off'] != 0 ? formatRupiahReport($item['nhpp_off']) : 0,
         'hrg_on' => $item['nhrg_on'] != 0 ? formatRupiahReport($item['nhrg_on']) : 0,
         'hrg_off' => $item['nhrg_off'] != 0 ? formatRupiahReport($item['nhrg_off']) : 0,
-        'tebus' => $item['ntebus'] != 0 ? formatRupiahReport($item['ntebus']) : 0,
-        'uang_kembali' => $item['ncash_back'],
-        'expedisi' => $item['nexpedisi'] != 0 ? formatRupiahReport($item['nexpedisi']) : 0,
-        'asuransi' => $item['nasuransi'] != 0 ? formatRupiahReport($item['nasuransi']) : 0,
-        'karoseri' => $item['nkaroseri'] != 0 ? formatRupiahReport($item['nkaroseri']) : 0,
-        'naksesoris' => $item['naksesoris'] != 0 ? formatRupiahReport($item['naksesoris']) : 0,
-        'bunga_inventory' => $item['nbunga_inventory'] != 0 ? formatRupiahReport($item['nbunga_inventory']) : 0,
-        'pemeliharaan_pdi' => $item['npemeliharaan_pdi'] != 0 ? formatRupiahReport($item['npemeliharaan_pdi']) : 0,
-        'bbn' => $item['nbbn'] != 0 ? formatRupiahReport($item['nbbn']) : 0,
-        'insentif' => $item['ninsentif'] != 0 ? formatRupiahReport($item['ninsentif']) : 0,
-        'by_tambahan' => $item['nby_tambahan'] != 0 ? formatRupiahReport($item['nby_tambahan']) : 0,
+        // 'tebus' => $item['ntebus']  ? formatRupiahReport($item['ntebus']) : 0,
+        'uang_kembali' => formatRupiahReport($item['ncash_back']),
+        // 'expedisi' => $item['nexpedisi'] != 0 ? formatRupiahReport($item['nexpedisi']) : 0,
+        // 'asuransi' => $item['nasuransi'] != 0 ? formatRupiahReport($item['nasuransi']) : 0,
+        // 'karoseri' => $item['nkaroseri'] != 0 ? formatRupiahReport($item['nkaroseri']) : 0,
+        // 'naksesoris' => $item['naksesoris'] != 0 ? formatRupiahReport($item['naksesoris']) : 0,
+        // 'bunga_inventory' => $item['nbunga_inventory'] != 0 ? formatRupiahReport($item['nbunga_inventory']) : 0,
+        // 'pemeliharaan_pdi' => $item['npemeliharaan_pdi'] != 0 ? formatRupiahReport($item['npemeliharaan_pdi']) : 0,
+        // 'bbn' => $item['nbbn'] != 0 ? formatRupiahReport($item['nbbn']) : 0,
+        // 'insentif' => $item['ninsentif'] != 0 ? formatRupiahReport($item['ninsentif']) : 0,
+        // 'by_tambahan' => $item['nby_tambahan'] != 0 ? formatRupiahReport($item['nby_tambahan']) : 0,
         'tahun' => $item['ctahun'],
       ];
     });
@@ -76,6 +105,12 @@ class ExportPricelist implements FromCollection, WithHeadings
 
   public function headings(): array
   {
-    return ['Kode', 'Cabang', 'Merk', 'Tipe',  'HPP ON', 'HPP OFF', 'HRG OTR', 'HRG OFF', 'Tebus', 'Cashback',  'Expedisi', 'Asuransi', 'Karoseri', 'Aksesoris', 'Bunga Inventory', 'Pemeliharaan PDI', 'BBN', 'Insentif', 'Biaya Tambahan', 'Tahun'];
+    return [
+      'Kode', 'Cabang', 'Merk', 'Tipe',  'HPP ON', 'HPP OFF', 'HRG OTR', 'HRG OFF',
+      // 'Tebus',
+      'Cashback',
+      //  'Expedisi', 'Asuransi', 'Karoseri', 'Aksesoris', 'Bunga Inventory', 'Pemeliharaan PDI', 'BBN', 'Insentif', 'Biaya Tambahan',
+      'Tahun'
+    ];
   }
 }

@@ -37,6 +37,8 @@ $date2 = date('Y-m-t');
   dateStart: '{{$date1}}',
   dateLast: '{{$date2}}',
   keys:['ctahun','cKode','cmerk','ctipe','cnama','nhpp_on','nhpp_off','nhrg_on','nhrg_off','ncash_back','ckat','cket','ntebus','nexpedisi','ndelivery','nasuransi','nkaroseri','naksesoris','nbunga_inventory','npemeliharaan_pdi','nbbn','ninsentif','nby_tambahan'],
+  dataThead : [{name: 'kode', key:'cKode', active:false}, {name: 'Cabang', key:'cnama', active:false}, {name: 'Merek', key:'cmerek', active:false}, {name: 'Tipe', key:'ctipe', active:false}, {name: 'HPP ON', key:'nhpp_on', active:false}, {name: 'HPP OFF', key:'nhpp_off', active:false}, {name: 'HRG ON', key:'nhrg_on', active:false}, {name: 'HRG OFF', key:'nhrg_off', active:false}, {name: 'HRG Tebus', key:'ntebus', active:false}, {name: 'Cashback', key:'ncash_back', active:false}, {name: 'Expedisi', key:'nexpedisi', active:false}, {name: 'Asuransi', key:'nasuransi', active:false}, {name: 'Karoseri', key:'nkaroseri', active:false}, {name: 'Delivery', key:'ndelivery', active:false}, {name: 'Aksesoris', key:'naksesoris', active:false}, {name: 'Bunga Inventory', key:'nbunga_inventory', active:false}, {name: 'Pemeliharaan PDI', key:'npemeliharaan_pdi', active:false}, {name: 'BBN', key:'nbbn', active:false}, {name: 'Insentif', key:'ninsentif', active:false}, {name: 'Biaya Tambahan', key:'nby_tambahan', active:false}, {name: 'Keterangan', key:'cket', active:false}, {name: 'Tahun', key:'ctahun', active:false}
+  ],
   pages: [],
   offset: 25,
   currentPage: 1,
@@ -146,6 +148,17 @@ $date2 = date('Y-m-t');
     this.searchInputModel = '';
     this.searchInputCabang = '';
     this.searchInputTahun = '';
+    this.clearTheadSearch();
+  },
+  clearTheadSearch(){
+    const tes = this.dataThead.slice().map((item,index) => {
+      return {
+        key: index,
+        name: 'kontoru',
+        active : false
+      }
+    })
+    console.log(tes)
   },
 }" x-init="
   getDataPricelist()
