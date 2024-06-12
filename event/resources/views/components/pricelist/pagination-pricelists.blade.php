@@ -18,7 +18,7 @@
     getDataPricelist()
   },
 }">
-  <div class="btn btn-sm border px-2 cursor-pointer bg-white" @click="pageFirst()">
+  <div class="btn btn-sm border px-2 cursor-pointer bg-white rounded-pill shadow-sm" @click="pageFirst()">
     <small class="text-gray-700">First</small>
   </div>
 
@@ -29,30 +29,32 @@
     <span>
       <small>Page</small>
       <small class="fw-bold" x-text="pagePricelist"></small>
+      <small>From</small>
+      <small class="fw-bold" x-text="pageLastPricelist"></small>
     </span>
   </div>
 
   <div class=" d-flex justify-content-end gap-2">
     {{-- back --}}
-    <template x-if="pageLastPricelist > 1">
-      <div class=" btn btn-sm border px-2 cursor-pointer bg-white" @click="pageBack()">
+    <template x-if="pagePricelist > 1">
+      <div class=" btn btn-sm border px-2 cursor-pointer bg-white rounded-pill shadow-sm" @click="pageBack()">
         <small class="text-gray-700">Previous</small>
       </div>
     </template>
-    <template x-if="pageLastPricelist <= 1">
-      <div class="btn btn-sm border px-2 bg-light">
+    <template x-if="pagePricelist <= 1">
+      <div class="btn btn-sm border px-2 bg-light rounded-pill shadow-sm">
         <small class="">Previous</small>
       </div>
     </template>
 
     {{-- next --}}
-    <template x-if="pageLastPricelist > 1">
-      <div class="btn btn-sm border px-2 cursor-pointer bg-white" @click="pageNext()">
+    <template x-if="pagePricelist >= 1">
+      <div class="btn btn-sm border px-2 cursor-pointer bg-white rounded-pill shadow-sm" @click="pageNext()">
         <small class="text-secondary">Next</small>
       </div>
     </template>
-    <template x-if="pageLastPricelist <= 1">
-      <div class="btn btn-sm border px-2 bg-light">
+    <template x-if="pagePricelist < 1">
+      <div class="btn btn-sm border px-2 bg-light rounded-pill shadow-sm">
         <small class="">Next</small>
       </div>
     </template>

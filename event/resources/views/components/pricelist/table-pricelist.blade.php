@@ -49,16 +49,19 @@
   },
 
   selectedActiveSearchThead(key, index, ){
-    let active = dataThead.find(item => item.key == key) ? true : false
-    if(active){
-      this.dataThead[index] = {
-        ...this.dataThead,
-        active:true
-      }
-    }else{
-      this.dataThead[index] = {
-        ...this.dataThead,
-        active:false
+    let active = dataThead.find(item => item.key == key)
+    console.log({active})
+    if(active.hasOwnProperty('active')){
+      if(active){
+        this.dataThead[index] = {
+          ...this.dataThead[index],
+          active:true
+        }
+      }else{
+        this.dataThead[index] = {
+          ...this.dataThead[index],
+          active:false
+        }
       }
     }
   },
@@ -128,32 +131,39 @@
     })
   },
 
+  testing(){
+    console.log('masuk')
+  },
+
 }" x-effect="
   console.log({selectedPricelists, filteredPricelists})
 ">
   <div class="d-flex justify-content-between align-items-center mb-2">
     {{-- button update --}}
     <div class=" d-flex gap-2">
+      <button class="btn p-0 " x-on:click="clearSearch()">
+        <i class='bx bx-reset'></i>
+      </button>
       <template x-if="selectedPricelists.length > 0">
         {{-- edit --}}
-        <button class="btn btn-sm btn-primary d-flex align-items-center" style="padding: 4px 10px" data-bs-toggle="modal" data-bs-target="#modalEditMultiplePricelist" x-on:click="filterSelectedPricelists()"><i class='bx bx-edit-alt'></i>
+        <button class="btn btn-sm btn-primary d-flex align-items-center rounded-pill" style="padding: 4px 16px" data-bs-toggle="modal" data-bs-target="#modalEditMultiplePricelist" x-on:click="filterSelectedPricelists()"><i class='bx bx-edit-alt'></i>
           <span>Edit</span>
         </button>
       </template>
       <template x-if="selectedPricelists.length > 0">
         {{-- clear --}}
-        <button class="btn btn-sm btn-success d-flex align-items-center" style="padding: 4px 10px" x-on:click="clearSelectedPricelists()"><i class='bx bx-checkbox-minus'></i>
+        <button class="btn btn-sm btn-success d-flex align-items-center rounded-pill" style="padding: 4px 16px" x-on:click="clearSelectedPricelists()"><i class='bx bx-checkbox-minus'></i>
           <span>Clear</span>
         </button>
       </template>
     </div>
     {{-- buttons --}}
     <div class="d-flex justify-content-end align-items-center gap-2 ">
-      <button class="btn btn-sm btn-info d-flex align-items-center gap-1" style="padding: 4px 10px" data-bs-toggle="modal" data-bs-target="#modalImportPricelist">
+      <button class="btn btn-sm btn-info rounded-pill d-flex align-items-center gap-1" style="padding: 4px 16px" data-bs-toggle="modal" data-bs-target="#modalImportPricelist">
         <i class='bx bxs-file-import'></i>
         <span>Import</span>
       </button>
-      <button class="btn btn-sm btn-primary d-flex align-items-center gap-1" style="padding: 4px 10px" data-bs-toggle="modal" data-bs-target="#modalExportPricelist">
+      <button class="btn btn-sm btn-primary d-flex rounded-pill align-items-center gap-1" style="padding: 4px 16px" data-bs-toggle="modal" data-bs-target="#modalExportPricelist">
         <i class='bx bxs-file-export'></i>
         <span>Export</span>
       </button>
@@ -162,8 +172,8 @@
   {{-- loading skeleton --}}
   <x-animasi.skeleton-data-table :number="16" />
   <div class="view">
-    <div class="wrapper">
-      <table x-show="!isLoadingTable" class="table table-hover caption-top bg-white table-striped table-sm">
+    <div class="wrapper rounded-sm">
+      <table x-show="!isLoadingTable" class="table   table-hover caption-top bg-white table-striped table-responsive-lg">
         {{-- table head --}}
         <x-pricelist.table-head-pricelist />
         <tbody class="table-border-bottom-0 placeholder-glow">
@@ -173,14 +183,15 @@
             </tr>
           </template>
           <template x-for="(item, index) in items" :key="index">
-            <tr class="animation__opacity">
+            <tr class="animation__opacity thead">
               <td class="text-center first-col sticky-col bg-white">
-                <input type="checkbox" x-bind:value="item.cKode" class="form-check-input" x-model="selectedPricelists" x-on:change="selectedActiveKode(item.cKode, index)" id="checkbox-pricelist">
+                <input type="checkbox" x-bind:value="item.cKode" class="form-check-input rounded-pill" x-model="selectedPricelists" x-on:change="selectedActiveKode(item.cKode, index)" id="checkbox-pricelist">
               </td>
               <td x-text="item.cKode" class="second-col sticky-col bg-white"></td>
               <td x-text="item.cnama"></td>
               <td x-text="item.cmerk"></td>
               <td x-text="item.ctipe"></td>
+              <td x-text="item.ctahun"></td>
               <td x-text="formatRupiah(item.nhpp_on)" class="text-end"></td>
               <td x-text="formatRupiah(item.nhpp_off)" class="text-end"></td>
               <td x-text="formatRupiah(item.nhrg_on)" class="text-end"></td>
@@ -198,7 +209,7 @@
               <td x-text="formatRupiah(item.ninsentif)" class="text-end"></td>
               <td x-text="formatRupiah(item.nby_tambahan)" class="text-end"></td>
               <td x-text="item.cket"></td>
-              <td x-text="item.ctahun"></td>
+
             </tr>
           </template>
         </tbody>

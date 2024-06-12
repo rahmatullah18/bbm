@@ -61,7 +61,7 @@ input::-webkit-inner-spin-button {
 
 /* table do */
 .thkecil {
-  width: 20px;
+  min-width: 20px;
   /* border: 1px solid #dee2e6; */
 }
 

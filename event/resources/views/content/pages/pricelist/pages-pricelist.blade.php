@@ -37,7 +37,8 @@ $date2 = date('Y-m-t');
   dateStart: '{{$date1}}',
   dateLast: '{{$date2}}',
   keys:['ctahun','cKode','cmerk','ctipe','cnama','nhpp_on','nhpp_off','nhrg_on','nhrg_off','ncash_back','ckat','cket','ntebus','nexpedisi','ndelivery','nasuransi','nkaroseri','naksesoris','nbunga_inventory','npemeliharaan_pdi','nbbn','ninsentif','nby_tambahan'],
-  dataThead : [{name: 'kode', key:'cKode', active:false}, {name: 'Cabang', key:'cnama', active:false}, {name: 'Merek', key:'cmerek', active:false}, {name: 'Tipe', key:'ctipe', active:false}, {name: 'HPP ON', key:'nhpp_on', active:false}, {name: 'HPP OFF', key:'nhpp_off', active:false}, {name: 'HRG ON', key:'nhrg_on', active:false}, {name: 'HRG OFF', key:'nhrg_off', active:false}, {name: 'HRG Tebus', key:'ntebus', active:false}, {name: 'Cashback', key:'ncash_back', active:false}, {name: 'Expedisi', key:'nexpedisi', active:false}, {name: 'Asuransi', key:'nasuransi', active:false}, {name: 'Karoseri', key:'nkaroseri', active:false}, {name: 'Delivery', key:'ndelivery', active:false}, {name: 'Aksesoris', key:'naksesoris', active:false}, {name: 'Bunga Inventory', key:'nbunga_inventory', active:false}, {name: 'Pemeliharaan PDI', key:'npemeliharaan_pdi', active:false}, {name: 'BBN', key:'nbbn', active:false}, {name: 'Insentif', key:'ninsentif', active:false}, {name: 'Biaya Tambahan', key:'nby_tambahan', active:false}, {name: 'Keterangan', key:'cket', active:false}, {name: 'Tahun', key:'ctahun', active:false}
+
+  dataThead : [{name: 'kode', key:'cKode', type:'input', active:false, model:'searchInputKode'}, {name: 'Cabang', key:'cnama', type:'select', active:false, model:'searchInputCabang',}, {name: 'Merek', key:'cmerek', type:'input', active:false, model:'searchInputMerk'}, {name: 'Tipe', key:'ctipe', type:'select', active:false, model:'searchInputTipe', }, {name: 'Tahun', key:'ctahun', type:'select', active:false, model:'searchInputTahun', }, {name: 'HPP ON (RP)', key:'nhpp_on', }, {name: 'HPP OFF (RP)', key:'nhpp_off', }, {name: 'HRG ON (RP)', key:'nhrg_on', }, {name: 'HRG OFF (RP)', key:'nhrg_off', }, {name: 'HRG Tebus (RP)', key:'ntebus', }, {name: 'Cashback (RP)', key:'ncash_back', }, {name: 'Expedisi (RP)', key:'nexpedisi', }, {name: 'Asuransi (RP)', key:'nasuransi', }, {name: 'Karoseri (RP)', key:'nkaroseri', }, {name: 'Delivery (RP)', key:'ndelivery', }, {name: 'Aksesoris (RP)', key:'naksesoris', }, {name: 'Bunga Inventory (RP)', key:'nbunga_inventory', }, {name: 'Pemeliharaan PDI (RP)', key:'npemeliharaan_pdi', }, {name: 'BBN (RP)', key:'nbbn', }, {name: 'Insentif (RP)', key:'ninsentif', }, {name: 'Biaya Tambahan (RP)', key:'nby_tambahan', }, {name: 'Keterangan (RP)', key:'cket', },
   ],
   pages: [],
   offset: 25,
@@ -94,13 +95,31 @@ $date2 = date('Y-m-t');
       })
   },
 
-  searchDataPricelist(){
+  searchDataPricelist(value){
     this.limit = this.limit
     this.pagePricelist = 1
     this.getDataPricelist()
 
     // remove focus checkbox
     // document.getElementById('checkbox-pricelist').checked = false
+  },
+  searchThead(value, key){
+    this.limit = this.limit
+    this.pagePricelist = 1
+    if(key === 'cKode'){
+      this.searchInputKode = value
+    }
+    else if(key === 'cmerek'){
+      this.searchInputMerk = value
+    }
+    else if(key === 'ctipe'){
+      this.searchInputTipe = value
+    } else if(key === 'cnama'){
+      this.searchInputCabang = value
+    } else if(key === 'ctahun'){
+      this.searchInputTahun = value
+    }
+    this.getDataPricelist()
   },
   changeListTable(){
     this.pagePricelist = 1
@@ -149,16 +168,22 @@ $date2 = date('Y-m-t');
     this.searchInputCabang = '';
     this.searchInputTahun = '';
     this.clearTheadSearch();
+    // getDataPricelist()
   },
   clearTheadSearch(){
-    const tes = this.dataThead.slice().map((item,index) => {
-      return {
-        key: index,
-        name: 'kontoru',
-        active : false
+    const mappingThead = this.dataThead.slice().map((item,index) => {
+      if(item.hasOwnProperty('active')){
+        return {
+          ...item,
+          active : false
+        }
+      }else {
+        return {
+          ...item
+        }
       }
     })
-    console.log(tes)
+    this.dataThead = mappingThead
   },
 }" x-init="
   getDataPricelist()
@@ -171,11 +196,11 @@ $date2 = date('Y-m-t');
   dataCabang,
 })">
 
-  <x-title-page title="Daftar Harga" />
+  <x-title-page title="DAFTAR HARGA" />
   <div class="d-flex justify-content-between gap-2  flex-wrap" x-cloak>
     <div class="d-flex gap-2  align-items-center mt-4 pagingPo">
       <span>Tampilkan : </span>
-      <select x-model="limit" x-on:change="changeListTable()" class="form-select form-select-sm" style="width: 70px;">
+      <select x-model="limit" x-on:change="changeListTable()" class="form-select form-select-sm rounded-pill shadow-sm" style="width: 70px;">
         <option value="5">5</option>
         <option value="10">10</option>
         <option value="25">25</option>
@@ -184,23 +209,23 @@ $date2 = date('Y-m-t');
       </select>
       <span>Data</span>
     </div>
-    <div class="d-flex align-items-center gap-2 page4">
+    <div class="d-flex align-items-center gap-4 page4">
       <div class="d-flex gap-1 align-items-center mt-4">
         {{-- kode --}}
         <div class="section-filter">
           <label for="" class="label-filter">Kode : </label>
-          <input x-model="searchInputKode" type="text" class="form-control form-control-sm" placeholder="Cari kode ..." aria-label="Recipient's username">
+          <input x-model="searchInputKode" type="text" class="form-control form-control-sm rounded-pill shadow-sm" placeholder="Cari kode ..." aria-label="Recipient's username">
         </div>
 
         {{-- model --}}
         <div class="section-filter">
           <label for="" class="label-filter">Model : </label>
-          <input x-model="searchInputModel" type="text" class="form-control form-control-sm " placeholder="Cari model ..." aria-label="Recipient's username">
+          <input x-model="searchInputModel" type="text" class="form-control rounded-pill shadow-sm form-control-sm " placeholder="Cari model ..." aria-label="Recipient's username">
         </div>
         {{-- tipe --}}
         <div class="section-filter">
           <label for="" class="label-filter">Tipe : </label>
-          <select x-model="searchInputTipe" class="form-select form-select-sm">
+          <select x-model="searchInputTipe" class="form-select form-select-sm rounded-pill shadow-sm">
             <option value="">Semua</option>
             <template x-for="(tipe, idx) in dataTipe">
               <option x-bind:value="tipe.ctipe" x-text="tipe.ctipe" :key="idx"></option>
@@ -210,7 +235,7 @@ $date2 = date('Y-m-t');
         {{-- cabang --}}
         <div class="section-filter">
           <label for="" class="label-filter">Cabang : </label>
-          <select x-model="searchInputCabang" class="form-select form-select-sm">
+          <select x-model="searchInputCabang" class="form-select form-select-sm rounded-pill shadow-sm">
             <option value="">Semua</option>
             <template x-for="(cabang, idx) in dataCabang">
               <option x-bind:value="cabang.cloc" x-text="cabang.cnama" :key="idx"></option>
@@ -220,7 +245,7 @@ $date2 = date('Y-m-t');
         {{-- tahun --}}
         <div class="section-filter">
           <label for="" class="label-filter">Tahun : </label>
-          <select x-model="searchInputTahun" class="form-select form-select-sm">
+          <select x-model="searchInputTahun" class="form-select form-select-sm rounded-pill shadow-sm">
             <option value="">Semua</option>
             <template x-for="(tahun, idx) in dataTahun">
               <option x-bind:value="tahun" x-text="tahun" :key="idx"></option>
@@ -228,10 +253,10 @@ $date2 = date('Y-m-t');
           </select>
         </div>
 
-        <button class="btn  btn-sm border bg-dark text-white" style="padding: 4px 10px;" x-on:click="searchDataPricelist()">
+        <button class="btn  rounded-pill  btn-sm border shadow-sm" style="padding: 4px 16px;" x-on:click="searchDataPricelist()">
           <i class='bx bx-search'></i>
         </button>
-        <button class="btn  btn-sm bg-warning border text-white" style="padding: 4px 10px;" x-on:click="clearSearch()">
+        <button class="btn  btn-sm rounded-pill  border shadow-sm" style="padding: 4px 16px;" x-on:click="clearSearch()">
           <i class='bx bx-reset'></i>
         </button>
       </div>

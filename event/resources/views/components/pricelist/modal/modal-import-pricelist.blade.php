@@ -114,7 +114,7 @@ $cloc = session()->get('cloc');
             <div class=" mb-2 d-flex justify-content-between  align-items-center " for="inputGroupFile02">
               <form action="{{url('/import-template')}}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-xs btn-success">
+                <button type="submit" class="btn btn-sm shadow-sm btn-success rounded-pill">
                   Template
                   <i class='bx bxs-download bx-xs'></i>
                 </button>
@@ -143,7 +143,7 @@ $cloc = session()->get('cloc');
             <input id="fileExcel" type="file" x-ref="excelInput" x-on:change="handleInputChange()" class="inputFile" placeholder="pilih file" style="display:none" accept=".xls,.xlsx">
 
             <div class="d-flex justify-content-end mt-2">
-              <button x-show="!isLoadingUploadFile" x-on:click="uploadFile()" type="button" class="btn btn-primary btn-sm " style="padding: 4px 10px">Tambah</button>
+              <button x-show="!isLoadingUploadFile" x-on:click="uploadFile()" type="button" class="btn btn-primary btn-sm rounded-pill shadow-sm " style="padding: 6px 16px">Tambah</button>
               <span x-show="isLoadingUploadFile">
                 <x-loading-submit />
               </span>
@@ -160,7 +160,7 @@ $cloc = session()->get('cloc');
               </span>
               <div class="section-filter" style="width: 20%;">
                 <label for="" class="label-filter">Tanggal : </label>
-                <input x-model="date" type="date" class="form-control form-control-sm">
+                <input x-model="date" type="date" class="form-control form-control-sm rounded-pill shadow-sm">
               </div>
             </div>
             <div class="table-responsive text-nowrap mt-2" style="max-height: 30rem;">
@@ -238,7 +238,7 @@ $cloc = session()->get('cloc');
               </table>
             </div>
             <div class="d-flex justify-content-end mt-4">
-              <button x-show="!isLoadingSubmit" x-on:click="submitForm()" type="button" class="btn btn-primary btn-sm " style="padding: 4px 10px">Import</button>
+              <button x-show="!isLoadingSubmit" x-on:click="submitForm()" type="button" class="btn btn-primary btn-sm rounded-pill shadow-sm" style="padding: 6px 16px">Import</button>
               <span x-show="isLoadingSubmit">
                 <x-loading-submit />
               </span>
