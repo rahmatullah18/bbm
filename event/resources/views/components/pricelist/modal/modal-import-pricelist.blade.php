@@ -173,26 +173,26 @@ $cloc = session()->get('cloc');
                     <th>Kategori</th>
                     <th>Tahun</th>
                     <th>Harga Tebus</th>
-                    <th>Harga Tebus Net</th>
-                    <th>Harga ON</th>
-                    <th>Harga OFF</th>
-                    <th>Hpp ON</th>
-                    <th>Hpp OFF</th>
                     <th>Deposit</th>
                     <th>Tebus Deposit</th>
-                    <th>Biaya Expedisi</th>
-                    <th>Biaya Asuransi</th>
+                    <th>Harga Tebus Net</th>
                     <th>Biaya Karoseri</th>
+                    <th>Biaya Expedisi</th>
+                    <th>Persen Asuransi</th>
+                    <th>Biaya Asuransi</th>
                     <th>Biaya Pemeliharaan PDI</th>
-                    <th>Biaya PPN</th>
-                    <th>Biaya Tambahan</th>
-                    <th>Margin</th>
                     <th>Insentif</th>
+                    <th>Persen Bunga Inventory</th>
                     <th>Bunga Inventory</th>
                     <th>BBN</th>
-                    <th>Persen Asuransi</th>
-                    <th>Persen Bunga Inventory</th>
                     <th>Persen Margin</th>
+                    <th>Margin</th>
+                    <th>Hpp OFF</th>
+                    <th>Hpp ON</th>
+                    <th>Harga OFF</th>
+                    <th>Harga ON</th>
+                    <th>Biaya PPN</th>
+                    <th>Biaya Tambahan</th>
                     <th>PPH 22</th>
                     <th>PPH 22 Margin</th>
                     <th>PPN Des</th>
@@ -208,26 +208,26 @@ $cloc = session()->get('cloc');
                       <td x-text="item.kategori"></td>
                       <td x-text="item.tahun"></td>
                       <td x-text="formatRupiah(item.harga_tebus ?? 0)"></td>
-                      <td x-text="formatRupiah(item.harga_tebus_net ?? 0)"></td>
-                      <td x-text="formatRupiah(item.harga_on_bulat ?? 0)"></td>
-                      <td x-text="formatRupiah(item.harga_off_bulat ?? 0)"></td>
-                      <td x-text="formatRupiah(item.hpp_on ?? 0)"></td>
-                      <td x-text="formatRupiah(item.hpp_off ?? 0)"></td>
                       <td x-text="formatRupiah(item.deposit ?? 0)"></td>
                       <td x-text="formatRupiah(item.tebus_deposit ?? 0)"></td>
-                      <td x-text="formatRupiah(item.expedisi ?? 0)"></td>
-                      <td x-text="formatRupiah(item.asuransi ?? 0)"></td>
+                      <td x-text="formatRupiah(item.harga_tebus_net ?? 0)"></td>
                       <td x-text="formatRupiah(item.karoseri ?? 0)"></td>
+                      <td x-text="formatRupiah(item.expedisi ?? 0)"></td>
+                      <td x-text="item.persen_asuransi ?? ''"></td>
+                      <td x-text="formatRupiah(item.asuransi ?? 0)"></td>
                       <td x-text="formatRupiah(item.pemeliharaan_pdi ?? 0)"></td>
-                      <td x-text="formatRupiah(item.biaya_ppn ?? 0)"></td>
-                      <td x-text="formatRupiah(item.by_tambahan ?? 0)"></td>
-                      <td x-text="formatRupiah(item.margin ?? 0)"></td>
                       <td x-text="formatRupiah(item.insentif ?? 0)"></td>
+                      <td x-text="item.persen_bunga_inventory ?? ''"></td>
                       <td x-text="formatRupiah(item.bunga_inventory ?? 0)"></td>
                       <td x-text="formatRupiah(item.bbn ?? 0)"></td>
-                      <td x-text="item.persen_asuransi ?? ''"></td>
-                      <td x-text="item.persen_bunga_inventory ?? ''"></td>
                       <td x-text="item.persen_margin ?? ''"></td>
+                      <td x-text="formatRupiah(item.margin ?? 0)"></td>
+                      <td x-text="formatRupiah(item.hpp_off ?? 0)"></td>
+                      <td x-text="formatRupiah(item.hpp_on ?? 0)"></td>
+                      <td x-text="formatRupiah(item.harga_off_bulat ?? 0)"></td>
+                      <td x-text="formatRupiah(item.harga_on_bulat ?? 0)"></td>
+                      <td x-text="formatRupiah(item.biaya_ppn ?? 0)"></td>
+                      <td x-text="formatRupiah(item.by_tambahan ?? 0)"></td>
                       <td x-text="item.pph22 ?? ''"></td>
                       <td x-text="formatRupiah(item.pph22_margin ?? 0)"></td>
                       <td x-text="item.ppn_des ?? ''"></td>
