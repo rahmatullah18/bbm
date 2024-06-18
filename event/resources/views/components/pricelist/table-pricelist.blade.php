@@ -192,24 +192,23 @@
               <td x-text="item.cmerk"></td>
               <td x-text="item.ctipe"></td>
               <td x-text="item.ctahun"></td>
+              <td x-text="formatRupiah(item.ntebus)" class="text-end"></td>
+              <td x-text="formatRupiah(item.nkaroseri)" class="text-end"></td>
+              <td x-text="formatRupiah(item.nexpedisi)" class="text-end"></td>
+              <td x-text="formatRupiah(item.nasuransi)" class="text-end"></td>
+              <td x-text="formatRupiah(item.naksesoris)" class="text-end"></td>
+              <td x-text="formatRupiah(item.ndelivery)" class="text-end"></td>
+              <td x-text="formatRupiah(item.npemeliharaan_pdi)" class="text-end"></td>
+              <td x-text="formatRupiah(item.ninsentif)" class="text-end"></td>
+              <td x-text="formatRupiah(item.nbunga_inventory)" class="text-end"></td>
+              <td x-text="formatRupiah(item.nbbn)" class="text-end"></td>
               <td x-text="formatRupiah(item.nhpp_on)" class="text-end"></td>
               <td x-text="formatRupiah(item.nhpp_off)" class="text-end"></td>
               <td x-text="formatRupiah(item.nhrg_on)" class="text-end"></td>
               <td x-text="formatRupiah(item.nhrg_off)" class="text-end"></td>
-              <td x-text="formatRupiah(item.ntebus)" class="text-end"></td>
               <td x-text="formatRupiah(item.ncash_back)" class="text-end"></td>
-              <td x-text="formatRupiah(item.nexpedisi)" class="text-end"></td>
-              <td x-text="formatRupiah(item.nasuransi)" class="text-end"></td>
-              <td x-text="formatRupiah(item.nkaroseri)" class="text-end"></td>
-              <td x-text="formatRupiah(item.ndelivery)" class="text-end"></td>
-              <td x-text="formatRupiah(item.naksesoris)" class="text-end"></td>
-              <td x-text="formatRupiah(item.nbunga_inventory)" class="text-end"></td>
-              <td x-text="formatRupiah(item.npemeliharaan_pdi)" class="text-end"></td>
-              <td x-text="formatRupiah(item.nbbn)" class="text-end"></td>
-              <td x-text="formatRupiah(item.ninsentif)" class="text-end"></td>
               <td x-text="formatRupiah(item.nby_tambahan)" class="text-end"></td>
               <td x-text="item.cket"></td>
-
             </tr>
           </template>
         </tbody>
