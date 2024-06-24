@@ -58,7 +58,12 @@ class PricelistController extends Controller
         'Authorization' => 'Bearer ' . $token,
       ])->post($url, $payload);
       $result = $response->json();
-      return response()->json($result['result']);
+      if (!$result['error']) {
+        return response()->json($result['result']);
+      } else {
+        return response()->json($result['error']);
+        // throw new \Exception('Terjadi kesalahan dalam pengambilan data. Silahkan coba lagi.');
+      }
     } catch (\Throwable $th) {
       toastr()->error('Data gagal');
       return redirect()->route('pricelists');

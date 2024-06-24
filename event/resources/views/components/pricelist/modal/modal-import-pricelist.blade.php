@@ -38,19 +38,28 @@ $cloc = session()->get('cloc');
       method: 'POST',
       body: formData
     }).then(res => res.json()).then(data => {
-      console.log({dataExcel: data})
-      if(!data[0].kode_tipe && !data[0].cabang && !data[0].tahun && !data[0].tebus && !data[0].deposit){
+      // jika error == true
+      if(data == true){
+        Swal.fire({
+          icon: 'error',
+          title: 'Fetch server gagal',
+          text: 'Contact Tim IT',
+          showConfirmButton: false,
+          timer: 4000
+        })
+      return;
+      } else if(!data[0].kode_tipe && !data[0].cabang && !data[0].tahun && !data[0].tebus && !data[0].deposit){
         throw 'gagal'
       }
-      console.log({data})
       this.dataImport = data
       this.isActiveTable = true
     }).catch(err => {
       Swal.fire({
         icon: 'error',
-        text: 'Format excel tidak cocok',
+        title: 'Format excel tidak cocok',
+        text: 'Format excel tidak sesuai, silahkan download template untuk menyesuaian format excel',
         showConfirmButton: false,
-        timer: 2000
+        timer: 6000
       })
       this.clearExcel()
     }).finally(() => {
