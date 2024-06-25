@@ -28,12 +28,12 @@ class PricelistController extends Controller
   {
     $excelFile = $request->file('excel');
     $data = Excel::toCollection(new PricelistImport, $excelFile);
-
+    // return response()->json($data);
     $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJiYW1zLWJibSIsInN1YiI6eyJ1c2VybmFtZSI6ImlsaGFtLnN1cmlhbnRvIiwic3RhdHVzIjoibG9naW4iLCJrb2RlX3BlZyI6IkstMTktMDAxMTEiLCJkaXZpc2kiOiIxIiwiY25tX2xlbmdrYXAiOiJJTEhBTSBTVVJJQU5UTyIsImNsb2MiOiJQUlQiLCJjamFiIjoiSVQiLCJja29kZV9qYWIiOiI5OSIsImNhYmFuZyI6IktJTUEifSwiaWF0IjoxNzE1NjUwNTg0LCJleHAiOjE3MjA4MzQ1ODR9.A64iJDLnvuaek2yFGuHUw8xvf_kfW2lswHYm8_kSZ30';
     // $token = getToken();
 
     $url = getBaseUrlApi('/master/price_unit/perhitungan');
-    $payload = $data[0]->map(function ($item) {
+    $payload = $data->flatten(1)->map(function ($item) {
       return [
         "kode" => (string)$item['kode_tipe'] ?? '',
         "cabang" => $item['cabang'] ?? '',
@@ -48,6 +48,7 @@ class PricelistController extends Controller
         "bbn" => $item['bbn'] ?? 0
       ];
     });
+
 
     // return response()->json($payload);
 
