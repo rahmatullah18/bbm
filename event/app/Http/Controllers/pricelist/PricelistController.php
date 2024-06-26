@@ -49,7 +49,6 @@ class PricelistController extends Controller
       ];
     });
 
-
     // return response()->json($payload);
 
     // fetch api perhitungan
@@ -62,7 +61,7 @@ class PricelistController extends Controller
       if (!$result['error']) {
         return response()->json($result['result']);
       } else {
-        return response()->json($result['error']);
+        return response()->json($result);
         // throw new \Exception('Terjadi kesalahan dalam pengambilan data. Silahkan coba lagi.');
       }
     } catch (\Throwable $th) {

@@ -39,7 +39,7 @@ $cloc = session()->get('cloc');
       body: formData
     }).then(res => res.json()).then(data => {
       // jika error == true
-      if(data == true){
+      if(data['error'] == true){
         Swal.fire({
           icon: 'error',
           title: 'Fetch server gagal',
