@@ -231,14 +231,13 @@ $date2 = date('Y-m-t');
       </select>
       <span>Data</span>
     </div>
-    <div class="d-flex align-items-center gap-4 page4">
+    <div class="d-flex align-items-center gap-4 page4" x-cloak>
       <div class="d-flex gap-1 align-items-center mt-4">
         {{-- kode --}}
         <div class="section-filter">
           <label for="" class="label-filter">Kode : </label>
           <input x-model="searchInputKode" type="text" class="form-control form-control-sm rounded-pill shadow-sm" placeholder="Cari kode ..." aria-label="Recipient's username">
         </div>
-
         {{-- model --}}
         <div class="section-filter">
           <label for="" class="label-filter">Model : </label>

@@ -22,7 +22,6 @@ class PricelistController extends Controller
   {
     return Excel::download(new TemplatePricelist(), 'Import Daftar Harga ' . '.xlsx');
   }
-
   // import api controller
   public function importPricelist(Request $request)
   {
@@ -42,9 +41,10 @@ class PricelistController extends Controller
         "deposit" => $item['deposit'] ?? 0,
         "expedisi" => $item['expedisi'] ?? 0,
         "karoseri" => $item['karoseri'] ?? 0,
+        "aksesoris" => $item['aksesoris'] ?? 0,
         "pemeliharaan_pdi" => $item['pemeliharaan_pdi'] ?? 0,
         "insentif" => $item['insentif'] ?? 0,
-        "by_tambahan" => $item['biaya_tambahan'] ?? 0,
+        "tambahan_harga" => $item['tambahan_harga'] ?? 0,
         "bbn" => $item['bbn'] ?? 0
       ];
     });

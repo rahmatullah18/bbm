@@ -7,43 +7,31 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class TemplatePricelist implements FromCollection, WithHeadings
 {
-  /**
-   * @return \Illuminate\Support\Collection
-   */
   public function collection()
   {
     return collect([
       [
-        "kode_tipe" => "TF01",
-        "cabang" => 'MKS',
+        "kode" => "DR21",
+        "cabang" => "MKS",
         "tahun" => "2024",
-        "tebus" => 413750000,
-        "deposit" => 0,
-        "expedisi" => 4155600,
+        "tebus" => 190850000,
+        "deposit" => 1000000,
+        "expedisi" => 3852600,
         "karoseri" => 0,
+        "aksesoris" => 0,
         "pemeliharaan_pdi" => 119000,
-        "insentif" => 1400000,
-        "by_tambahan" => 0,
-        "bbn" => 53900000
+        "insentif" => 1000000,
+        "bbn" => 23100000,
+        "tambahan_harga" => 600000
       ],
-      // [
-      //   "kode_tipe" => "TF02",
-      //   "cabang" => 'MKS',
-      //   "tahun" => "2024",
-      //   "tebus" => 513750000,
-      //   "deposit" => 0,
-      //   "expedisi" => 5155600,
-      //   "karoseri" => 0,
-      //   "pemeliharaan_pdi" => 219000,
-      //   "insentif" => 2400000,
-      //   "by_tambahan" => 0,
-      //   "bbn" => 63900000
-      // ]
     ]);
   }
 
   public function headings(): array
   {
-    return ['Kode Tipe', 'Cabang', 'Tahun', 'Tebus', 'Deposit', 'Expedisi', 'Karoseri', 'Pemeliharaan PDI', 'Insentif', 'Biaya Tambahan', 'BBN'];
+    return [
+      'Kode Tipe', 'Cabang', 'Tahun', 'Tebus', 'Deposit', 'Expedisi', 'Karoseri',
+      'Aksesoris', 'Pemeliharaan PDI', 'Insentif', 'BBN', 'Tambahan Harga',
+    ];
   }
 }

@@ -158,7 +158,7 @@
       </template>
     </div>
     {{-- buttons --}}
-    <div class="d-flex justify-content-end align-items-center gap-2 ">
+    <div class="d-flex justify-content-end align-items-center gap-2 " x-cloak>
       <button class="btn btn-sm btn-info rounded-pill d-flex align-items-center gap-1" style="padding: 4px 16px" data-bs-toggle="modal" data-bs-target="#modalImportPricelist">
         <i class='bx bxs-file-import'></i>
         <span>Import</span>

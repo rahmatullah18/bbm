@@ -25,3 +25,7 @@
 ::root {
   view-transition-name: none;
 }
+
+[x-cloak] {
+  display: none !important;
+}

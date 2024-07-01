@@ -186,6 +186,7 @@ $cloc = session()->get('cloc');
                     <th>Tebus Deposit</th>
                     <th>Harga Tebus Net</th>
                     <th>Biaya Karoseri</th>
+                    <th>Biaya Aksesoris</th>
                     <th>Biaya Expedisi</th>
                     <th>Persen Asuransi</th>
                     <th>Biaya Asuransi</th>
@@ -201,11 +202,11 @@ $cloc = session()->get('cloc');
                     <th>Harga OFF</th>
                     <th>Harga ON</th>
                     <th>Biaya PPN</th>
-                    <th>Biaya Tambahan</th>
                     <th>PPH 22</th>
                     <th>PPH 22 Margin</th>
                     <th>PPN Des</th>
                     <th>PPN Per</th>
+                    <th>Tambahan Harga</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -221,6 +222,7 @@ $cloc = session()->get('cloc');
                       <td x-text="formatRupiah(item.tebus_deposit ?? 0)"></td>
                       <td x-text="formatRupiah(item.harga_tebus_net ?? 0)"></td>
                       <td x-text="formatRupiah(item.karoseri ?? 0)"></td>
+                      <td x-text="formatRupiah(item.aksesoris ?? 0)"></td>
                       <td x-text="formatRupiah(item.expedisi ?? 0)"></td>
                       <td x-text="item.persen_asuransi ?? ''"></td>
                       <td x-text="formatRupiah(item.asuransi ?? 0)"></td>
@@ -236,11 +238,11 @@ $cloc = session()->get('cloc');
                       <td x-text="formatRupiah(item.harga_off_bulat ?? 0)"></td>
                       <td x-text="formatRupiah(item.harga_on_bulat ?? 0)"></td>
                       <td x-text="formatRupiah(item.biaya_ppn ?? 0)"></td>
-                      <td x-text="formatRupiah(item.by_tambahan ?? 0)"></td>
                       <td x-text="item.pph22 ?? ''"></td>
                       <td x-text="formatRupiah(item.pph22_margin ?? 0)"></td>
                       <td x-text="item.ppn_des ?? ''"></td>
                       <td x-text="item.ppn_per ?? ''"></td>
+                      <td x-text="formatRupiah(item.tambahan_harga ?? 0)"></td>
                     </tr>
                   </template>
                 </tbody>
