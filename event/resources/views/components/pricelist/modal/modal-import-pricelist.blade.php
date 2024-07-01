@@ -107,6 +107,13 @@ $cloc = session()->get('cloc');
         this.isLoadingSubmit = false
       })
     },
+  handleDrop(event) {
+    const files = event.dataTransfer.files;
+    if (files.length > 0) {
+      this.$refs.excelInput.files = files;
+      this.handleInputChange();
+    }
+  }
 }">
   <div class="modal fade" data-bs-backdrop='static' id="modalImportPricelist" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -134,11 +141,11 @@ $cloc = session()->get('cloc');
               </button>
             </div>
 
-            <label for="fileExcel" class="labelFile">
+            <label for="fileExcel" class="labelFile" x-on:drop.prevent="handleDrop($event)" x-on:dragover.prevent>
               <div x-show="!excelFile || excelFile.length === 0">
                 <div>
                   <x-icon.awan />
-                  <p>Klik untuk memilih file</p>
+                  <p>Klik atau seret file ke sini</p>
                 </div>
               </div>
               <div x-show="excelFile.lastModified">

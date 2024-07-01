@@ -10,9 +10,9 @@
 </template> --}}
 
 {{-- loading skeleton --}}
-<template x-if="isLoadingTable">
+<div x-show="isLoadingTable" x-transition>
   <div class="d-flex flex-column gap-2 ">
-    <template x-for="j in 10">
+    <template x-for="j in 25">
       <div class="d-flex gap-2 placeholder-glow">
         <template x-for="i in 10">
           <div class="placeholder" style="width: 100%">lorem</div>
@@ -20,4 +20,4 @@
       </div>
     </template>
   </div>
-</template>
+</div>
