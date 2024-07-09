@@ -125,6 +125,6 @@ Route::middleware('ensure.user')->prefix('/finance')->group(function () {
 });
 
 // route
-Route::get('/pricelists', 'App\Http\Controllers\pricelist\PricelistController@index')->name('pricelists');
-Route::post('/import-template', [PricelistController::class, 'templateImport'])->name('template-import-pricelist');
-Route::post('/export-pricelist', [PricelistController::class, 'exportPricelist'])->name('template-import-pricelist');
+Route::get('/pricelists', 'App\Http\Controllers\pricelist\PricelistController@index')->name('pricelists')->middleware('ensure.user');
+Route::post('/import-template', [PricelistController::class, 'templateImport'])->name('template-import-pricelist')->middleware('ensure.user');
+Route::post('/export-pricelist', [PricelistController::class, 'exportPricelist'])->name('template-export-pricelist')->middleware('ensure.user');
