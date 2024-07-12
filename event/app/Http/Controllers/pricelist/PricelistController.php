@@ -25,14 +25,23 @@ class PricelistController extends Controller
   // import api controller
   public function importPricelist(Request $request)
   {
+    $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJiYW1zLWJibSIsInN1YiI6eyJ1c2VybmFtZSI6ImlsaGFtLnN1cmlhbnRvIiwic3RhdHVzIjoibG9naW4iLCJrb2RlX3BlZyI6IkstMTktMDAxMTEiLCJkaXZpc2kiOiIxIiwiY25tX2xlbmdrYXAiOiJJTEhBTSBTVVJJQU5UTyIsImNsb2MiOiJQUlQiLCJjamFiIjoiSVQiLCJja29kZV9qYWIiOiI5OSIsImNhYmFuZyI6IktJTUEifSwiaWF0IjoxNzE1NjUwNTg0LCJleHAiOjE3MjA4MzQ1ODR9.A64iJDLnvuaek2yFGuHUw8xvf_kfW2lswHYm8_kSZ30';
     $excelFile = $request->file('excel');
     $data = Excel::toCollection(new PricelistImport, $excelFile);
+    // dd($data->flatten(1));
+    $data = $data->flatten(1)->filter(function ($item, $key) {
+      return $item['kode_tipe'] !== null;
+    });
     // return response()->json($data);
-    $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJiYW1zLWJibSIsInN1YiI6eyJ1c2VybmFtZSI6ImlsaGFtLnN1cmlhbnRvIiwic3RhdHVzIjoibG9naW4iLCJrb2RlX3BlZyI6IkstMTktMDAxMTEiLCJkaXZpc2kiOiIxIiwiY25tX2xlbmdrYXAiOiJJTEhBTSBTVVJJQU5UTyIsImNsb2MiOiJQUlQiLCJjamFiIjoiSVQiLCJja29kZV9qYWIiOiI5OSIsImNhYmFuZyI6IktJTUEifSwiaWF0IjoxNzE1NjUwNTg0LCJleHAiOjE3MjA4MzQ1ODR9.A64iJDLnvuaek2yFGuHUw8xvf_kfW2lswHYm8_kSZ30';
+
+    // Trim data excel
+
+
+
     // $token = getToken();
 
     $url = getBaseUrlApi('/master/price_unit/perhitungan');
-    $payload = $data->flatten(1)->map(function ($item) {
+    $payload = $data->map(function ($item) {
       return [
         "kode" => (string)$item['kode_tipe'] ?? '',
         "cabang" => $item['cabang'] ?? '',
