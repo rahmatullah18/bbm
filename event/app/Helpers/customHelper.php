@@ -10,8 +10,9 @@ function formatRupiah($number)
 
 function getToken()
 {
+  $tokenExample = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJiYW1zLWJibSIsInN1YiI6eyJ1c2VybmFtZSI6ImlsaGFtLnN1cmlhbnRvIiwic3RhdHVzIjoibG9naW4iLCJrb2RlX3BlZyI6IkstMTktMDAxMTEiLCJkaXZpc2kiOiIxIiwiY25tX2xlbmdrYXAiOiJJTEhBTSBTVVJJQU5UTyIsImNsb2MiOiJNS1MiLCJjamFiIjoiSVQiLCJja29kZV9qYWIiOiI5OSIsImNhYmFuZyI6Ik1BS0FTU0FSIFVSSVAifSwiaWF0IjoxNzIyOTIyNDUxLCJleHAiOjE3MjgxMDY0NTF9.hspHxZlt3_gO2UfRHwuJPLOum39fUT3r4BEUUyJQF_Y";
   $token = session()->get('token_api');
-  return $token;
+  return $tokenExample;
 }
 
 function getBaseUrlApi($url)

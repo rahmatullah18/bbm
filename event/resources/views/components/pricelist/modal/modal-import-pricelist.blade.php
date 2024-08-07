@@ -19,6 +19,19 @@ $cloc = session()->get('cloc');
     this.nameFile = ''
   },
 
+  filterPayloadImport(data){
+    return data.map((item, idx) => {
+      return {
+        ...item,
+        tgl_berlaku:this.date,
+        kode_tipe: item.kode,
+        persen_pph22: item.pph22,
+        pph22: item.pph22_margin,
+        catatan: item.disini,
+      }
+    })
+  },
+
   uploadFile(){
     isLoadingUploadFile = true
     let formData = new FormData();
@@ -51,7 +64,9 @@ $cloc = session()->get('cloc');
       } else if(!data[0].kode_tipe && !data[0].cabang && !data[0].tahun && !data[0].tebus && !data[0].deposit){
         throw 'gagal'
       }
-      this.dataImport = data
+      const filtered = this.filterPayloadImport(data)
+
+      this.dataImport = filtered
       this.isActiveTable = true
     }).catch(err => {
       Swal.fire({
@@ -69,7 +84,7 @@ $cloc = session()->get('cloc');
   },
   submitForm(){
       this.isLoadingSubmit = true
-      fetch(getBaseUrlApi('master/price_unit/update'), {
+      fetch(getBaseUrlApi('master/price_unit/insert'), {
         method: 'POST',
         headers: {
           'Content-Type' : 'application/json',
@@ -77,10 +92,11 @@ $cloc = session()->get('cloc');
         },
         body: JSON.stringify(this.dataImport)
       }).then(res => res.json()).then(data => {
-        if(data.response == 404){
+        if(data.response == 404 || data.statusCode == 404){
           Swal.fire({
           icon: 'error',
-          text: data.message,
+          text: `${data.message}`,
+          title: `Gagal menambahkan data`,
           showConfirmButton: false,
           timer: 3000
         })

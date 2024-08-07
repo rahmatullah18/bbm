@@ -25,7 +25,7 @@ class PricelistController extends Controller
   // import api controller
   public function importPricelist(Request $request)
   {
-    $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJiYW1zLWJibSIsInN1YiI6eyJ1c2VybmFtZSI6ImlsaGFtLnN1cmlhbnRvIiwic3RhdHVzIjoibG9naW4iLCJrb2RlX3BlZyI6IkstMTktMDAxMTEiLCJkaXZpc2kiOiIxIiwiY25tX2xlbmdrYXAiOiJJTEhBTSBTVVJJQU5UTyIsImNsb2MiOiJQUlQiLCJjamFiIjoiSVQiLCJja29kZV9qYWIiOiI5OSIsImNhYmFuZyI6IktJTUEifSwiaWF0IjoxNzE1NjUwNTg0LCJleHAiOjE3MjA4MzQ1ODR9.A64iJDLnvuaek2yFGuHUw8xvf_kfW2lswHYm8_kSZ30';
+    $token = getToken();
     $excelFile = $request->file('excel');
     $data = Excel::toCollection(new PricelistImport, $excelFile);
     // dd($data->flatten(1));
@@ -33,12 +33,6 @@ class PricelistController extends Controller
       return $item['kode_tipe'] !== null;
     });
     // return response()->json($data);
-
-    // Trim data excel
-
-
-
-    // $token = getToken();
 
     $url = getBaseUrlApi('/master/price_unit/perhitungan');
     $payload = $data->map(function ($item) {
@@ -67,6 +61,7 @@ class PricelistController extends Controller
         'Authorization' => 'Bearer ' . $token,
       ])->post($url, $payload);
       $result = $response->json();
+      // return response()->json($result);
       if (!$result['error']) {
         return response()->json($result['result']);
       } else {
