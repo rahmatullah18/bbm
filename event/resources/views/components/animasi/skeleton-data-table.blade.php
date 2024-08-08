@@ -10,7 +10,7 @@
 </template> --}}
 
 {{-- loading skeleton --}}
-<div x-show="isLoadingTable" x-transition>
+<div x-show="isLoadingTable">
   <div class="d-flex flex-column gap-2 ">
     <template x-for="j in 25">
       <div class="d-flex gap-2 placeholder-glow">

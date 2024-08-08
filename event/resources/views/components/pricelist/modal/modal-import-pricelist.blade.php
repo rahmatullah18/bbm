@@ -83,7 +83,16 @@ $cloc = session()->get('cloc');
     })
   },
   submitForm(){
-      this.isLoadingSubmit = true
+    Swal.fire({
+      icon: 'question',
+      title: 'Import Pricelist sekarang?',
+      // text: 'Format excel tidak sesuai, silahkan download template untuk menyesuaian format excel',
+      showConfirmButton: true,
+      showCancelButton:true
+      // timer: 6000
+    }).then((result) => {
+      if(result.isConfirmed){
+        this.isLoadingSubmit = true
       fetch(getBaseUrlApi('master/price_unit/insert'), {
         method: 'POST',
         headers: {
@@ -122,6 +131,8 @@ $cloc = session()->get('cloc');
         this.isActiveTable= false
         this.isLoadingSubmit = false
       })
+        }
+      })
     },
   handleDrop(event) {
     const files = event.dataTransfer.files;
@@ -142,7 +153,7 @@ $cloc = session()->get('cloc');
         </div>
         <div class="modal-body">
           {{-- table non active --}}
-          <div x-show="!isActiveTable" x-transition>
+          <div x-show="!isActiveTable">
             <div class=" mb-2 d-flex justify-content-between  align-items-center " for="inputGroupFile02">
               <form action="{{url('/import-template')}}" method="POST">
                 @csrf
@@ -182,7 +193,7 @@ $cloc = session()->get('cloc');
             </div>
           </div>
           {{-- table active --}}
-          <div x-show="isActiveTable" x-transition>
+          <div x-show="isActiveTable">
             <div class="d-flex justify-content-between align-items-center">
               <span x-on:click="isActiveTable = ! isActiveTable" class="text-primary">
                 <span class="d-flex align-items-center cursor-pointer ">
