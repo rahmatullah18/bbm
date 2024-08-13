@@ -171,9 +171,9 @@
   </div>
   {{-- loading skeleton --}}
   <x-animasi.skeleton-data-table :number="16" />
-  <div class="view">
+  <div class="view" x-show="!isLoadingTable">
     <div class="wrapper rounded-sm">
-      <table x-show="!isLoadingTable" class="table   table-hover caption-top bg-white table-striped table-responsive-lg">
+      <table class="table   table-hover caption-top bg-white table-striped table-responsive-lg">
         {{-- table head --}}
         <x-pricelist.table-head-pricelist />
         <tbody class="table-border-bottom-0 placeholder-glow">

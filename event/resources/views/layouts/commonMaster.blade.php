@@ -125,6 +125,45 @@ $today = date('Y-m-d');
       }
     }
   },
+
+  async fetchApi({url, method, data}){
+    try{
+    const response = await fetch(this.getBaseUrlApi(url), {
+      method : method,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.globalToken,
+      },
+      body: JSON.stringify(data)
+    }).then(res => res.json()).then(data => {
+    if(data.error){
+      throw data;
+    }
+      return data
+    })
+    return response
+    }catch(err){
+      return {
+        ...err,
+        error : true
+      }
+    }
+  },
+
+  checkingResError(code){
+    let text;
+    if(code === 404){
+      text = 'Maaf Lagi ada kendala, Silahkan Contact Tim IT'
+    }
+
+    Swal.fire({
+      icon: 'error',
+      title: text,
+      text: code,
+      // showConfirmButton: false,
+      // timer: 3000,
+    })
+  },
 }">
   <!-- Layout Content -->
   @yield('layoutContent')

@@ -65,12 +65,13 @@ class PricelistController extends Controller
       if (!$result['error']) {
         return response()->json($result['result']);
       } else {
-        return response()->json($result);
-        // throw new \Exception('Terjadi kesalahan dalam pengambilan data. Silahkan coba lagi.');
+        throw new \Exception($result['statusCode'] ?? $result['response']);
       }
-    } catch (\Throwable $th) {
-      toastr()->error('Data gagal');
-      return redirect()->route('pricelists');
+    } catch (\Exception $error) {
+      return response()->json([
+        'error' => true,
+        'statusCode' => (int)$error->getMessage()
+      ], (int)$error->getMessage());
     }
     // return response()->json($data);
   }

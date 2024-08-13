@@ -86,15 +86,13 @@ $date2 = date('Y-m-t');
   isLoadingUploadFile:false,
   excelFile: [],
 
-  getDataPricelist(){
+  async getDataPricelist(){
     this.isLoadingTable = true
-      fetch(getBaseUrlApi('master/pl-unit/list'), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + globalToken,
-        },
-        body: JSON.stringify({
+    // fetchApi dari global state
+    const res = await fetchApi({
+      url : 'master/pl-unit/list',
+      method : 'POST',
+      data : {
           'kode' : this.searchInputKode,
           'merk' : this.searchInputMerk,
           'tipe' : this.searchInputTipe,
@@ -104,17 +102,18 @@ $date2 = date('Y-m-t');
           'detail' : 0,
           'page' : this.pagePricelist,
           'limit' : Number(this.limit),
-        })
-      }).then(res => res.json()).then(data => {
-        this.items = data.result.data
-        this.pageLastPricelist = data['result']['last_page']
-        this.totalDataPricelist = data.result.total
-      }).catch(err => {
-        this.items = []
-        this.totalDataPricelist = 0
-      }).finally(() => {
-        this.isLoadingTable = false
-      })
+      }
+    })
+    if(!res.error){
+      this.items = res.result.data
+      this.pageLastPricelist = res['result']['last_page']
+      this.totalDataPricelist = res.result.total
+    } else {
+      this.items = []
+      this.totalDataPricelist = 0
+      checkingResError(res.statusCode)
+    }
+    this.isLoadingTable = false
   },
 
   searchDataPricelist(value){
@@ -216,10 +215,10 @@ $date2 = date('Y-m-t');
   // items: items,
   dataTipe,
   dataCabang,
-})">
+})" x-cloak>
 
   <x-title-page title="DAFTAR HARGA" />
-  <div class="d-flex justify-content-between gap-2  flex-wrap" x-cloak>
+  <div class="d-flex justify-content-between gap-2  flex-wrap">
     <div class="d-flex gap-2  align-items-center mt-4 pagingPo">
       <span>Tampilkan : </span>
       <select x-model="limit" x-on:change="changeListTable()" class="form-select form-select-sm rounded-pill shadow-sm" style="width: 70px;">

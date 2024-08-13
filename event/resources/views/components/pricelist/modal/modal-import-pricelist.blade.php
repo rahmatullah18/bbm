@@ -32,7 +32,7 @@ $cloc = session()->get('cloc');
     })
   },
 
-  uploadFile(){
+  async uploadFile(){
     isLoadingUploadFile = true
     let formData = new FormData();
     // jika kosong
@@ -47,6 +47,7 @@ $cloc = session()->get('cloc');
       return
     }
     formData.append('excel', excelFile);
+
     fetch(`${baseUrl}api/pricelist/import-pricelist`, {
       method: 'POST',
       body: formData
@@ -55,7 +56,7 @@ $cloc = session()->get('cloc');
       if(data['error'] == true){
         Swal.fire({
           icon: 'error',
-          title: 'Fetch server gagal',
+          title: 'Perhitungan gagal',
           text: 'Contact Tim IT',
           showConfirmButton: false,
           timer: 4000
@@ -65,7 +66,6 @@ $cloc = session()->get('cloc');
         throw 'gagal'
       }
       const filtered = this.filterPayloadImport(data)
-
       this.dataImport = filtered
       this.isActiveTable = true
     }).catch(err => {
@@ -86,54 +86,43 @@ $cloc = session()->get('cloc');
     Swal.fire({
       icon: 'question',
       title: 'Import Pricelist sekarang?',
-      // text: 'Format excel tidak sesuai, silahkan download template untuk menyesuaian format excel',
       showConfirmButton: true,
       showCancelButton:true
       // timer: 6000
-    }).then((result) => {
+    }).then(async (result) => {
       if(result.isConfirmed){
         this.isLoadingSubmit = true
-      fetch(getBaseUrlApi('master/price_unit/insert'), {
-        method: 'POST',
-        headers: {
-          'Content-Type' : 'application/json',
-          'Authorization': 'Bearer ' + globalToken
-        },
-        body: JSON.stringify(this.dataImport)
-      }).then(res => res.json()).then(data => {
-        if(data.response == 404 || data.statusCode == 404){
-          Swal.fire({
-          icon: 'error',
-          text: `${data.message}`,
-          title: `Gagal menambahkan data`,
-          showConfirmButton: false,
-          timer: 3000
+        const payload = this.dataImport
+        const res = await fetchApi({
+          url: 'master/price_unit/insert',
+          method: 'POST',
+          data: payload
         })
-        }else{
+
+        if(!res.error){
           Swal.fire({
-          icon: 'success',
-          text: 'Data tersimpan',
-          showConfirmButton: false,
-          timer: 2000
-        })
+            icon: 'success',
+            title: 'Data berhasil ditambahkan',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Data gagal ditambahkan',
+            showConfirmButton: false,
+            timer: 2000
+          })
         }
-      }).catch(err => {
-        Swal.fire({
-          icon: 'error',
-          text: 'Data gagal tersimpan',
-          showConfirmButton: false,
-          timer: 2000
-        })
-      }).finally(() => {
+
         getDataPricelist()
         this.clearExcel()
         this.dataImport= []
         this.isActiveTable= false
         this.isLoadingSubmit = false
-      })
-        }
-      })
-    },
+      }
+    })
+  },
   handleDrop(event) {
     const files = event.dataTransfer.files;
     if (files.length > 0) {
