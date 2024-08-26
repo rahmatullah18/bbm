@@ -36,6 +36,10 @@ class Page2 extends Controller
       ]
     ]);
 
+    // dd($cloc);
+
+
+
     $no_event_res = Http::post('http://bbm-bams.co.id/sparepart_api/v1/get_no_event', [
       'json' => ['cloc' => $cloc],
       'headers' => [
@@ -306,8 +310,8 @@ class Page2 extends Controller
         }
       }
     }
-	
-	/*dd([
+
+    /*dd([
         'status' => $status,
         'no_event' => $no_event,
         'tgl_pengajuan' => $tgl_pengajuan,
@@ -350,7 +354,7 @@ class Page2 extends Controller
         'foto_lokasi_gmaps_nm' => $nama_file6,
         'note_spv' => $note_spv
       ]);*/
-	
+
     $response = Http::post('http://bbm-bams.co.id/sparepart_api/v1/simpan_event_sales', [
       'json' => [
         'status' => $status,
@@ -440,7 +444,7 @@ class Page2 extends Controller
 	echo json_encode($array_cek);*/
 
     //var_dump($response['result']);
-	
+
     if (!$response->successful()) {
 
       $err_msg = 'Gagal menyimpan data.';
@@ -1777,7 +1781,8 @@ class Page2 extends Controller
       }
 
       $data = [
-        'list_event' => $list_event_[0], 'detail_rincian_event' => $detail_rincian_event_
+        'list_event' => $list_event_[0],
+        'detail_rincian_event' => $detail_rincian_event_
       ];
 
       $pdf = PDF::loadView('content.print.print-approval-event', $data, [], [

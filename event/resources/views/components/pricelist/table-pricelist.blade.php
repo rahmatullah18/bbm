@@ -4,7 +4,6 @@
   isLoadingDetailPricelist: false,
   loadingSubmit: false,
 
-
   // state for edit pricelist
   selectedPricelists: [],
   kode:'',

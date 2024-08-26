@@ -9,7 +9,7 @@ $cloc = session()->get('cloc');
   date:today,
 
   handleInputChange(){
-    excelFile = $refs.excelInput.files[0]
+    this.excelFile = $refs.excelInput.files[0]
     this.nameFile = excelFile.name
   },
 
@@ -124,9 +124,10 @@ $cloc = session()->get('cloc');
     })
   },
   handleDrop(event) {
+    console.log({event});
     const files = event.dataTransfer.files;
     if (files.length > 0) {
-      this.$refs.excelInput.files = files;
+      $refs.excelInput.files = files;
       this.handleInputChange();
     }
   }
