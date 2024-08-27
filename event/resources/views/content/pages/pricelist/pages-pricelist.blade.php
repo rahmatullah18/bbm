@@ -40,7 +40,8 @@ $date2 = date('Y-m-t');
 
   dataThead : [
     {name: 'kode', key:'cKode', type:'input', active:false, model:'searchInputKode'},
-    {name: 'Cabang', key:'cnama', type:'select', active:false, model:'searchInputCabang',},
+    {name: 'Model', key:'cmodel', type:'input', active:false, model:'searchInputModel'},
+    {name: 'Cabang', key:'cnama', type:'select', active:false, model:'searchInputCabang'},
     {name: 'Merek', key:'cmerek', type:'input', active:false, model:'searchInputMerk'},
     {name: 'Tipe', key:'ctipe', type:'select', active:false, model:'searchInputTipe', },
     {name: 'Tahun', key:'ctahun', type:'select', active:false, model:'searchInputTahun', },
@@ -76,9 +77,9 @@ $date2 = date('Y-m-t');
   dataTipe:[],
   dataCabang: [],
   searchInputKode:'',
+  searchInputModel:'',
   searchInputMerk:'',
   searchInputTipe:'',
-  searchInputModel:'',
   searchInputCabang:'',
   searchInputTahun:'',
 
@@ -129,6 +130,9 @@ $date2 = date('Y-m-t');
     this.pagePricelist = 1
     if(key === 'cKode'){
       this.searchInputKode = value
+    }
+    else if(key === 'cmodel'){
+      this.searchInputModel= value
     }
     else if(key === 'cmerek'){
       this.searchInputMerk = value

@@ -187,6 +187,7 @@
                 <input type="checkbox" x-bind:value="item.cKode" class="form-check-input rounded-pill" x-model="selectedPricelists" x-on:change="selectedActiveKode(item.cKode, index)" id="checkbox-pricelist">
               </td>
               <td x-text="item.cKode" class="second-col sticky-col bg-white"></td>
+              <td x-text="item.cmodel"></td>
               <td x-text="item.cnama"></td>
               <td x-text="item.cmerk"></td>
               <td x-text="item.ctipe"></td>
